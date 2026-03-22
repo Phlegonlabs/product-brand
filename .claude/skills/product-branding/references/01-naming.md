@@ -311,6 +311,15 @@ Sound shapes perception. Every letter class below is equally viable — choose b
 | **Truncation + Suffix** | Clip a word down to its root, then add a new ending | Accel(-a), Forgo(-io), Prism(-atic) |
 | **Phonestheme Mining** | Use sound clusters that carry consistent psychological meaning across many words | gl- (light/vision): Glow, Gleam, Glint — sn- (quick/sharp): Snap, Swift — str- (force): Stripe, Strong |
 
+> **Real-world naming patterns** (use as generation prompts alongside the methods above):
+> 1. **Repurposed real word** — pick a word that metaphorically fits the outcome (Linear, Notion, Clerk, Render, Stripe)
+> 2. **Morpheme compound** — fuse two meaning-rich roots (Shopify=shop+simplify, Vercel=versatile+excel, Supabase=supa+base)
+> 3. **Classical/foreign root** — Latin, Greek, or foreign word with fitting meaning (Figma←Latin "fingere"=to shape, Prisma←Greek "to cut", Turso←Finnish mythology)
+> 4. **Truncation** — shorten a real word to something new (Canva←canvas, Intel←integrated electronics, FedEx←Federal Express)
+> 5. **Sound-first coinage** — invent a word optimized for phonetic impact, rationalize meaning later (Spotify←misheard word, Twilio←"two-way")
+> 6. **Deadline default** — brainstorm freely, then set a hard cutoff and commit to the best option in hand (Stripe: if nothing better by Dec 20, default to "Stripe")
+> 7. **Placeholder promotion** — start with a working name; let traction decide (Slack started as a codename, Supabase started as a placeholder joke)
+
 ### Morpheme Engineering — Lexicon's Core Technique
 
 This is the method behind Vercel, Verizon, Accenture, and Pinterest. Unlike portmanteau (which blends two recognizable whole words), morpheme engineering extracts sub-word meaning units and assembles them into a word that carries semantic DNA without being recognizable as either source word. The result sounds natural and linguistic — not invented — yet is completely ownable.
@@ -721,6 +730,42 @@ Always warn the user if candidates fall into these traps:
 - **The 1,000 Candidate Rule**: First 50 names are almost always the most generic. Quality emerges after volume.
 - **The Domain is an Area Code Principle**: Never sacrifice a great name because of domain availability. The right name compounds in value for decades. A domain conflict is a one-time logistics problem.
 - **Trust Before Cleverness**: The name should inspire trust and imagination, not just be clever.
+- **Resend's Criteria Filter**: Set explicit, measurable naming criteria before generating (e.g., .com available, <10 chars, product-connected, pronounceable) and filter against them ruthlessly. Named criteria beat gut feeling every time.
+- **The Placeholder Trap**: Temporary names become permanent faster than expected (Slack, Supabase, Stripe). If you're not ready to commit, avoid letting a placeholder gain traction.
+
+---
+
+## Real-World Naming Case Studies
+
+How great tech brands got their names — organized by naming approach.
+
+### Real Word (Repurposed)
+
+**Stripe** — The Collison brothers tried PayDemon, /dev/payments, PayForge. Unable to decide, they set a hard deadline: if nothing better by December 20, 2010, they'd go with "Stripe." The deadline decided. *Takeaway: constraints produce decisions. Deadlines work.*
+
+**Notion** — "An idea." A real English word mapped directly to the product's purpose as a workspace for ideas and concepts. No agency, no process — just the right metaphor. *Takeaway: the simplest word that fits the outcome usually wins.*
+
+**Linear** — CEO Karri Saarinen: "people want linear processes and outcomes." The name describes the desired state, not the product's features. *Takeaway: name the feeling, not the feature.*
+
+**Slack** — Stewart Butterfield's internal codename that stuck. Later backronymed to "Searchable Log of All Conversation and Knowledge" (the acronym came after, not before). *Takeaway: placeholders become permanent faster than you think. Post-hoc stories are fine.*
+
+**Resend** — Zeno Rocha set four explicit criteria before generating: .com TLD, fewer than 10 characters, connected to the product, easy to type and pronounce. "Resend" met all four. *Takeaway: write your criteria down first. They filter faster than intuition.*
+
+### Coined / Morpheme-Engineered
+
+**Vercel** — Lexicon Branding was hired to rename Zeit (German for "time"), which struggled to attract investment. Lexicon ran morpheme engineering across five languages: "ver-" from versatile/accelerate, "-cel" from excel. "V" was chosen as the most vibrant consonant in English. Rebranded in April 2020, coinciding with a $21M Series A. *Takeaway: professional naming uses sound science, not just vibes. The rebrand unlocked investment.*
+
+**Spotify** — Daniel Ek and Martin Lorentzon were shouting name ideas from different rooms. Ek misheard one as "Spotify," Googled it, found zero results, and registered the domain within minutes. Later rationalized as "spot + identify." *Takeaway: happy accidents work. The story doesn't need to come first.*
+
+**Figma** — From Latin "fingere" (to shape/mold). Short, pronounceable, high searchability, .com domain available. Classical root adds semantic depth without being obvious. *Takeaway: classical roots reward discovery — users find meaning in the name over time.*
+
+### Compound / Portmanteau
+
+**Shopify** — Original company name was "Jaded Pixel." Co-founder Scott Lake combined "shopping" + "simplify" and found the domain available. *Takeaway: 1+1=3. Compounds communicate instantly without being too literal.*
+
+**Supabase** — Paul Copplestone was brainstorming database names, tried "ultrabase" and "hyperbase" — nothing available. He put "supabase" as a placeholder joke inspired partly by Nicki Minaj's "Super Bass." After unexpectedly hitting #1 on Hacker News, they couldn't change it. *Takeaway: viral momentum locks in names. Even jokes become permanent once they gain traction.*
+
+**Canva** — During a team session, a French engineer noted that "canvas" is pronounced "canva" in French. The truncation became the final name. *Takeaway: cross-language pronunciation can reveal cleaner forms hidden inside familiar words.*
 
 ---
 
