@@ -2,7 +2,7 @@
 project: agenthunter
 module: 01-naming
 date: 2026-03-22
-round: 2
+rounds: 3
 ---
 
 # Brand Naming
@@ -22,92 +22,86 @@ round: 2
 
 ---
 
-## Round 2 Scoring Matrix
+## Round 3 — Real-Word Approach
 
-New batch generated with improved suffix diversity methodology — 4 suffix families represented, no X-family clustering.
+All 5 candidates are real words or cross-language real words. Screened 30+ real-word candidates — the common ones (Sentry, Flux, Beacon, Kiln, Anvil, Flint, Trellis, Boon, Rift, Seam, Draft, Truss, etc.) were all blocked by active funded tech companies.
 
 | Name | P | Mem | Pro | Spl | Dis | Fit | Sca | Sea | TM | Int | Pho | Dom | **Total** |
 |------|---|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----------|
-| Veltum | A | 4 | 4 | 4 | 4 | 4 | 5 | 4 | 4 | 4 | 4 | 4 | **46** |
-| Celvar | B | 3 | 4 | 4 | 5 | 3 | 5 | 5 | 5 | 4 | 3 | 4 | **45** |
-| Relven | A | 4 | 4 | 4 | 4 | 4 | 5 | 4 | 4 | 4 | 4 | 3 | **44** |
-| Solvra | A | 4 | 4 | 3 | 3 | 5 | 5 | 3 | 3 | 4 | 4 | 3 | **41** |
-| Korvum | A | 3 | 4 | 4 | 4 | 3 | 5 | 4 | 4 | 4 | 3 | 3 | **41** |
+| Forja | C | 4 | 3 | 4 | 4 | 4 | 5 | 4 | 4 | 5 | 4 | 4 | **45** |
+| Plinth | A | 4 | 4 | 4 | 5 | 3 | 5 | 5 | 5 | 3 | 3 | 4 | **45** |
+| Vane | A | 4 | 5 | 3 | 4 | 4 | 5 | 3 | 4 | 4 | 4 | 4 | **44** |
+| Keel | A | 4 | 5 | 5 | 3 | 4 | 5 | 3 | 3 | 5 | 4 | 2 | **43** |
+| Arbiter | B | 4 | 4 | 4 | 3 | 5 | 5 | 3 | 3 | 4 | 4 | 2 | **41** |
 
-Column key: P=Perspective (A=Insider/B=Competitor), Mem=Memorability, Pro=Pronounceability, Spl=Spellability, Dis=Distinctiveness, Fit=Brand Fit, Sca=Scalability, Sea=Searchability, TM=Trademark Strength, Int=International Safety, Pho=Phonetic Quality, Dom=Domain Availability
+Column key: P=Perspective (A=Insider/B=Competitor/C=Adjacent), Mem=Memorability, Pro=Pronounceability, Spl=Spellability, Dis=Distinctiveness, Fit=Brand Fit, Sca=Scalability, Sea=Searchability, TM=Trademark Strength, Int=International Safety, Pho=Phonetic Quality, Dom=Domain Availability
 
-*Eliminated 🔴: Striva (Strava phonetic confusion), Arbital (Arbital Health, $31M Series B, active), Conduit (conduit.ai — YC-backed AI agents, direct conflict), Florva (outdoor gear brand density), Treval (active travel website + multiple incorporated companies), Fulcra (fulcra.ai taken + trademark registered)*
-
----
-
-## 5 Registrable Candidates
-
-### Veltum — 46/55 🟢 Clean
-- **Domain:** veltum.com not operated by Veltum GmbH Greece (HVAC, different sector); veltum.ai/.io available for direct registration
-- **Conflicts:** Zero commercial footprint in tech. Greek HVAC company is entirely different sector and geography.
-- **Brand Rationale:** Morpheme-engineered from *vel*(ocity) + (momen)*tum*. Latin -um ending signals infrastructure-grade authority. V=vibrant momentum, L=smooth execution, T=decisive delivery. Hidden meaning: agents that complete tasks at *velocity*, building *momentum* in a new economy of work. Completely fanciful — maximum trademark strength.
-- **Suffix family:** Latin/Classical
-
-### Celvar — 45/55 🟢 Clean
-- **Domain:** celvar.com appears unregistered; celvar.ai/.io available for direct registration
-- **Conflicts:** Zero. Webflow template found, no trademark claim. Completely clean slate.
-- **Brand Rationale:** Fanciful construction with no immediately recognizable root — total ownability. C=crisp/decisive, V=vibrant, R=forward momentum. Can be rationalized as *cel*(erity/excel) + *var*(iable) — the variable that accelerates. Highest trademark strength in this set.
-- **Suffix family:** R-ending
-
-### Relven — 44/55 🟡 Minor
-- **Domain:** relven.com likely available (.ca taken by small Canadian digital agency); relven.ai/.io available
-- **Conflicts:** relven.ca — small Canadian brand agency, different country and industry, not a blocker
-- **Brand Rationale:** *Rel*(ay) embedded — relay is infrastructure language: route, dispatch, pass forward. Agents are relays between human intent and task completion. -ven suffix creates Soft-N flow (same register as Notion, Lumen). R=momentum, V=vibrant. Two syllables, easy to say and spell.
-- **Suffix family:** Soft N
-
-### Solvra — 41/55 🟡 Minor
-- **Domain:** solvra.com occupied (different industry); solvra.ai may be available — verify on Cloudflare; .io likely available
-- **Conflicts:** Multiple fragmented uses (sanitation software, game dev, AI agency, sales tools) — none dominant, none in the bounty/agent platform space. Trademark search recommended before filing.
-- **Brand Rationale:** *Solv*(e) embedded — strongest semantic fit in this set. Agents that *solve* tasks and collect rewards. Discovered meaning: users find "solve" inside the name over time (same mechanic as "versatile+excel" inside Vercel). -ra open-vowel ending (Figma/Canva register) adds warmth. S=smooth, V=vibrant, R=momentum.
-- **Suffix family:** Open Vowel
-
-### Korvum — 41/55 🟡 Minor
-- **Domain:** korvum.com occupied (Russian esoteric site — likely acquirable for low cost); korvum.ai/.io available
-- **Conflicts:** KORVUM LIMITED dissolved July 2019, no active presence. Adjacent name Corvum is Canadian VoIP (different name, different industry).
-- **Brand Rationale:** *Kor* (core) + *-vum* (original construction). K=sharp/decisive, R=momentum, V=vibrant. Signals the *core* infrastructure layer — the foundational exchange mechanism where agents operate. Latin -um ending places it in the same authority register as Veltum.
-- **Suffix family:** Latin/Classical
+*Eliminated 🔴: Sentry (sentry.io $3B), Flux (Black Forest Labs $3.25B), Beacon ($1B Series B), Kiln (kiln.tech direct AI conflict), Anvil (useanvil.com funded), Flint (two funded AI startups 2025), Trellis (YC S2023 Trellis AI), Boon ($20.5M AI startup), Rift (rift.ai a16z/Sequoia + RIFT AI = direct AI agent platform), Seam (Bessemer-backed dev platform), Draft, Truss, Quorum, Tender, Yield, Spire, Herald, Marshal, Arbital, Conduit, and more*
 
 ---
 
-## Round 1 vs Round 2 Comparison
+### Forja — 45/55 🟢 Clean
+- **Domain:** forja.com held by legacy consulting firm (est. 1985, no tech presence); forja.io/.ai available for direct registration
+- **Conflicts:** No English-language tech startup. Forj (community platform) is phonetically adjacent but visually and etymologically distinct.
+- **Brand Rationale:** Spanish and Portuguese for *forge* — the workshop where raw materials are heated and shaped into something valuable. Agents forge completed work from raw task descriptions. The cross-language discovery story (like Canva from French pronunciation of canvas) adds depth without being obvious. F=dynamic power, R=momentum. `-ja` open ending gives it a Figma/Canva register — technical but approachable. Strong internationally across Romance-language markets.
 
-| | Round 1 | Round 2 |
-|--|---------|---------|
-| **Names** | Merkvo, Zolven, Krenox, Kelvox, Narvex | Veltum, Celvar, Relven, Solvra, Korvum |
-| **Register** | Hard technical (-vex/-vox/-nox dominant) | Mixed: authority (-um), clean (-ar), flowing (-ven), warm (-ra) |
-| **Suffix families** | X-family + Soft N only | Latin/Classical, R-ending, Soft N, Open Vowel |
-| **Approach** | All morpheme-engineered | Mix: morpheme-engineered + fanciful + semantic |
-| **Top scorer** | Merkvo 48/55 | Veltum 46/55 |
+### Plinth — 45/55 🟢 Clean
+- **Domain:** plinth.com appears available for acquisition; plinth.io registered dormant (Plinth Ventures, Ontario, no active product); plinth.ai likely available
+- **Conflicts:** Zero dominant brand. Plinth Tech permanently closed. Tiny analytics consultancy (plinth.co) is negligible.
+- **Brand Rationale:** The architectural base that elevates whatever stands on it. The platform is the plinth — the infrastructure layer the entire agent economy rests on. Greek/Latin root signals precision and permanence without being loud. Maximum trademark strength: completely fanciful in English tech. P=precision, L=smooth, -TH ending is hard to forget.
 
-Both rounds are still valid. Round 1 has higher individual scores and a harder/more technical feel. Round 2 is more varied in texture and suffix register.
+### Vane — 44/55 🟢 Clean
+- **Domain:** vane.com may need purchase (Vane Capital Berlin uses vane.capital, different TLD); vane.ai/.io likely available
+- **Conflicts:** No dominant tech brand. Vane Capital, Vane Technologies, BigBear.ai VANE government tool — all minor, different sectors.
+- **Brand Rationale:** A weathervane reads the direction of the wind and points the way. The platform reads market demand and directs agents toward open tasks. One syllable — as clean as Stripe. V=vibrant energy. Note: homophone with "vain/vein" creates some spellability risk when heard aloud (mitigated by distinct written form VANE).
+
+### Keel — 43/55 🟡 Minor
+- **Domain:** keel.so taken (funded London startup); keel.com unclear; keel.ai likely available — verify on Cloudflare
+- **Conflicts:** keel.so — funded London operations/no-code platform ($6M Oct 2024), B2B ops vertical, not in AI agent/bounty space. Trademark search recommended.
+- **Brand Rationale:** The structural backbone of a ship — everything is built around it. Agents work "on an even keel." The platform is the keel of the new agent economy. One syllable, globally easy to spell. K=crisp decision, EEL=smooth momentum. Nautical/infrastructure register fits the brief exactly.
+
+### Arbiter — 41/55 🟡 Minor
+- **Domain:** arbiter.com (hardware instruments) and arbiter.io (K-12 sports, PE-backed) both taken; arbiter.ai likely available
+- **Conflicts:** Arbiter.io — ArbiterSports rebranded, PE-backed by Accel-KKR (education/athletics). Different industry but growing brand. Trademark counsel recommended before filing.
+- **Brand Rationale:** One who hears, judges, and resolves — the platform is the final arbiter of the agent economy: determines which agent completes which task and releases payment. "Final arbiter" carries authority. Strongest semantic fit in this set — every user immediately understands the power dynamic. Arbiter scores highest on Brand Fit (5/5).
 
 ---
 
-## Combined Pool — All 10 Registrable Candidates
+## Combined Pool — All Rounds
 
-| Name | Round | Score | Status | Feel |
-|------|-------|-------|--------|------|
-| Merkvo | 1 | 48 | 🟢 Clean | Hard technical, market DNA |
-| Veltum | 2 | 46 | 🟢 Clean | Velocity + authority, Latin |
-| Zolven | 1 | 45 | 🟡 Minor | "Solve" embedded, flowing |
-| Krenox | 1 | 45 | 🟢 Clean | Infrastructure/NOX energy |
-| Celvar | 2 | 45 | 🟢 Clean | Fanciful, maximum ownability |
-| Kelvox | 1 | 44 | 🟡 Minor | "Vox" = voice/market |
-| Relven | 2 | 44 | 🟡 Minor | Relay/dispatch, soft flow |
-| Narvex | 1 | 43 | 🟢 Clean | NAR+VEX, dispatch/execute |
-| Solvra | 2 | 41 | 🟡 Minor | "Solve" embedded, warm ending |
-| Korvum | 2 | 41 | 🟡 Minor | Core infrastructure, Latin |
+| Name | Round | Score | Status | Type | Feel |
+|------|-------|-------|--------|------|------|
+| Merkvo | 1 | 48 | 🟢 | Morpheme-engineered | Hard technical |
+| Veltum | 2 | 46 | 🟢 | Morpheme-engineered | Velocity + authority |
+| Forja | 3 | 45 | 🟢 | Cross-language real word | Craft + creation |
+| Plinth | 3 | 45 | 🟢 | Real word | Foundation + infrastructure |
+| Zolven | 1 | 45 | 🟡 | Morpheme-engineered | "Solve" embedded |
+| Krenox | 1 | 45 | 🟢 | Morpheme-engineered | Infrastructure/NOX |
+| Celvar | 2 | 45 | 🟢 | Fanciful | Maximum ownability |
+| Kelvox | 1 | 44 | 🟡 | Morpheme-engineered | "Vox" = voice |
+| Relven | 2 | 44 | 🟡 | Morpheme-engineered | Relay/dispatch |
+| Vane | 3 | 44 | 🟢 | Real word | Direction + signal |
+| Narvex | 1 | 43 | 🟢 | Morpheme-engineered | Dispatch/execute |
+| Keel | 3 | 43 | 🟡 | Real word | Stability + backbone |
+| Solvra | 2 | 41 | 🟡 | Morpheme-engineered | "Solve" + warm ending |
+| Korvum | 2 | 41 | 🟡 | Morpheme-engineered | Core infrastructure |
+| Arbiter | 3 | 41 | 🟡 | Real word | Authority + judgment |
+
+---
+
+## Character of Each Round
+
+| | Round 1 | Round 2 | Round 3 |
+|--|---------|---------|---------|
+| **Approach** | Pure morpheme engineering | Morpheme-engineered + fanciful | Real words + cross-language |
+| **Register** | Hard technical (-vex/-vox/-nox) | Authority (-um), clean (-ar), flowing (-ven), warm (-ra) | Concrete, visual, single-syllable |
+| **Examples feel like** | Accenture, Verizon | Vectum, Nexum | Stripe, Notion, Linear |
 
 ---
 
 ## What's Next
 
-No decision needed now. Sit with these names over time.
+No decision needed now.
 
 **When ready:**
 1. 48-hour rest test — which name do you keep coming back to after 2 days?
@@ -116,4 +110,4 @@ No decision needed now. Sit with these names over time.
 4. Secure social handles on X, GitHub, LinkedIn, Product Hunt
 5. Trademark counsel before filing
 
-**To continue branding:** Use whichever candidate resonates as working name — proceed to positioning. The positioning strategy transfers across all 10 candidates.
+**To continue branding:** Use any candidate as working name → proceed to positioning.
