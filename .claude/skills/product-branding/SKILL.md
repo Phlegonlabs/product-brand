@@ -59,7 +59,7 @@ Rules for `AskUserQuestion`:
 
 | Step | Module | What It Does | Output |
 |------|--------|-------------|--------|
-| ① | **Naming** | Name generation via Identify → Invent → Implement | 5 registrable name candidates + domain strategy |
+| ① | **Naming** | Name generation via Identify → Invent → Implement | 10 registrable name candidates (balanced: ~5 real words + ~5 engineered) + domain strategy |
 | ② | **Positioning** | Define market position + differentiation | Positioning statement, value prop, competitive map |
 | ③ | **Voice** | Define how the brand speaks | Tagline, messaging hierarchy, voice guidelines |
 | ④ | **Visual** | Define how the brand looks | Color palette, typography, logo brief |
@@ -102,7 +102,7 @@ When moving from one step to the next, carry forward ALL outputs from previous s
 ```
 === Context from Previous Steps ===
 Project Folder: [repo-root/project-name]
-Name Candidates: [top 5 registrable names from naming module]
+Name Candidates: [top 10 registrable names from naming module, balanced ~5 real words + ~5 engineered]
 Working Name: [highest-scoring candidate, used as provisional name]
 Domain Options: [best available domain per candidate]
 Positioning: [positioning statement]
@@ -148,7 +148,7 @@ Each module is a complete, self-contained guide stored in `references/`:
 
 | File | Lines | Content |
 |------|-------|---------|
-| `references/01-naming.md` | ~490 | Lexicon methodology: Identify brief (Diamond Framework) → Invent 60-100 names (3 cognitive perspectives) → Implement (screen → score → auto-select top 5 registrable candidates) |
+| `references/01-naming.md` | ~490 | Lexicon methodology: Identify brief (Diamond Framework) → Invent 60-100 names (3 cognitive perspectives) → Implement (screen → score → auto-select top 10 balanced candidates: ~5 real words + ~5 engineered) |
 | `references/02-positioning.md` | ~225 | 4 positioning frameworks (Jackson, Dunford, Diamond, Map) → statement + value prop |
 | `references/03-voice.md` | ~265 | Messaging hierarchy → taglines → voice guidelines → tone matrix → AI-ready governance |
 | `references/04-visual.md` | ~330 | Color palette → typography → logo brief → application guidelines |

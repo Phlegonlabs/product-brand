@@ -422,25 +422,27 @@ Column key: Mem=Memorability, Pro=Pronounceability, Spl=Spellability, Dis=Distin
 
 Sort by Total descending. Include all ~20 names — don't pre-select for the user.
 
-**Then automatically select the top 5 registrable candidates:**
+**Then automatically select the top 10 registrable candidates:**
 
-From the scored ~20 candidates, auto-select the top 5 by Total score where:
+From the scored ~20 candidates, auto-select the top 10 by Total score where:
 1. Conflict status is not 🔴 (already eliminated in pre-screen)
 2. Domain Availability score >= 3 (meaning at least .ai-only or .io+.co available)
 
-If fewer than 5 meet Domain >= 3, relax to Domain >= 2 to fill remaining slots.
+If fewer than 10 meet Domain >= 3, relax to Domain >= 2 to fill remaining slots.
+
+**Balance rule:** The 10 candidates must include a balanced mix — approximately 5 real words / cross-language real words AND 5 morpheme-engineered / fanciful names. If auto-selection produces an imbalanced set (e.g., 8 engineered + 2 real words), replace the excess from the overrepresented category with the next-highest-scoring name from the underrepresented category. Label each candidate's type in the shortlist table.
 
 After the matrix, output:
 
-> 根据可注册性（无冲突 + 域名可用）和总分，以下 5 个候选名进入深度审查：
+> 根据可注册性（无冲突 + 域名可用）和总分，以下 10 个候选名进入深度审查：
 
-| Name | Total /55 | Domain Status | Brand Logic |
-|------|-----------|---------------|-------------|
-| [Name A] | XX | .ai/.io available | [one-line] |
-| [Name B] | XX | .com available | [one-line] |
-| ... | ... | ... | ... |
+| Name | Total /55 | Type | Domain Status | Brand Logic |
+|------|-----------|------|---------------|-------------|
+| [Name A] | XX | Real word | .ai/.io available | [one-line] |
+| [Name B] | XX | Engineered | .com available | [one-line] |
+| ... | ... | ... | ... | ... |
 
-Proceed to Phase 3 with these 5 names. Do NOT ask the user to choose — present all 5 as equal candidates.
+Proceed to Phase 3 with these 10 names. Do NOT ask the user to choose — present all 10 as equal candidates.
 
 > **Note:** If the user finds none of these appealing after reviewing, generate another batch of 20–30 names with adjusted direction and repeat the pre-screen.
 
@@ -448,9 +450,9 @@ Proceed to Phase 3 with these 5 names. Do NOT ask the user to choose — present
 
 ## Phase 3: Implement
 
-**Goal:** Take the top 5 registrable candidates through full evidence — conflict deep-dive, domain verification, and final scoring — then present all 5 as equal candidates for the user to consider.
+**Goal:** Take the top 10 registrable candidates through full evidence — conflict deep-dive, domain verification, and final scoring — then present all 10 as equal candidates for the user to consider.
 
-The top 5 names were automatically selected in Phase 2 based on registrability (clean conflicts + domain availability) and total score. Proceed to conflict screening and domain verification for all 5.
+The top 10 names were automatically selected in Phase 2 based on registrability (clean conflicts + domain availability), total score, and balance (approximately 5 real words + 5 engineered). Proceed to conflict screening and domain verification for all 10.
 
 ### Output Rule
 
@@ -503,7 +505,7 @@ After all evidence blocks are presented, output the Scoring Matrix (all names ×
 
 Run conflict checks on ALL first-pass survivors **before scoring**. This saves time and prevents scoring names that will be eliminated.
 
-**Efficiency rule: run all conflict searches in parallel.** Use multiple WebSearch calls in a single message (or Agent tool batches) — never search one name at a time sequentially. For 5–8 names, this takes one round instead of 8 rounds.
+**Efficiency rule: run all conflict searches in parallel.** Use multiple WebSearch calls in a single message (or Agent tool batches) — never search one name at a time sequentially. For 10–12 names, split into 2–3 parallel batches of 4–5 names each — this takes 2–3 rounds instead of 12 sequential rounds.
 
 **For each surviving name, run at minimum 2 WebSearch queries:**
 
@@ -609,37 +611,38 @@ The user's selected names already have provisional scores from Phase 2. Now upda
 | **Total /55**        |  **51**  |  **48**  |  **43**  |
 ```
 
-**Then, present all 5 registrable candidates with equal weight:**
+**Then, present all 10 registrable candidates with equal weight:**
 
-For each of the 5 candidates, present a card in this format:
+For each of the 10 candidates, present a card in this format:
 
 | Field | Details |
 |-------|---------|
 | **Name** | The name |
+| **Type** | Real word / Cross-language / Morpheme-engineered / Fanciful |
 | **Score** | Total /55 (reference matrix above) |
 | **Domain Path** | Best available domain + registration strategy |
 | **Conflicts** | Conflict screening result (🟢/🟡/🔴) |
 | **Brand Rationale** | Why this name works — roots, sound psychology, strategic fit |
 
-Do NOT rank them gold/silver/bronze or declare a winner. All 5 are presented as equal candidates.
+Do NOT rank them gold/silver/bronze or declare a winner. All 10 are presented as equal candidates.
 
-If conflict screening eliminates one of the 5, pull up the next scored candidate from the ~20 pool.
+If conflict screening eliminates one of the 10, pull up the next scored candidate from the ~20 pool (maintaining the real word / engineered balance).
 
-**Closing section — output after all 5 candidate cards:**
+**Closing section — output after all 10 candidate cards:**
 
 ---
 
 ### What's Next
 
-这 5 个名字都通过了可注册性检验（无冲突 + 域名可用）。命名决策不需要着急——好名字需要时间发酵。
+这 10 个名字都通过了可注册性检验（无冲突 + 域名可用）。命名决策不需要着急——好名字需要时间发酵。
 
-**不需要现在做决定。** 把这 5 个名字放在那里，边用边感受。
+**不需要现在做决定。** 把这 10 个名字放在那里，边用边感受。
 
 **准备好之后：**
 1. **48小时沉淀测试** — 把你最有感觉的名字反复念两天。好名字越念越对，越念越有感觉。
 2. **Cloudflare 手动验证** — 在 `dash.cloudflare.com/domains` 确认域名可用性（WebSearch 结果仅供参考，不是最终状态）
 3. **注册域名** — Cloudflare Registrar 以成本价注册
-4. **商标咨询** — 5 个候选名都属于强商标类别（非描述性），建议在决策后尽早咨询
+4. **商标咨询** — 10 个候选名都属于强商标类别（非描述性），建议在决策后尽早咨询
 
 **现在可以继续品牌定位：** 品牌定位是战略层工作，不依赖于最终名字。选任意一个候选名作为工作名称（working name），定位完成后再做最终命名决策。
 
@@ -815,8 +818,8 @@ After presenting the final recommendation to the user, save the deliverables to 
    ## Scoring Matrix
    [11-dimension × N-name matrix table, totals /55]
 
-   ## 5 Registrable Candidates
-   [5 names with equal presentation: score, domain situation, conflicts, brand rationale]
+   ## 10 Registrable Candidates
+   [10 names with equal presentation: type, score, domain situation, conflicts, brand rationale — balanced ~5 real words + ~5 engineered]
 
    ## Full Candidate Set
    [all candidates by perspective]
@@ -832,4 +835,4 @@ After presenting the final recommendation to the user, save the deliverables to 
 
 After completing this skill, prompt the user:
 
-> **5 个可注册候选名已就绪！** 你不需要现在做决定——好名字需要时间发酵。下一步是 **品牌定位**——我们可以用任意一个候选名作为工作名称开始定位，定位完成后再做最终命名决策。要现在开始 `brand-positioning` 吗？
+> **10 个可注册候选名已就绪！** 你不需要现在做决定——好名字需要时间发酵。下一步是 **品牌定位**——我们可以用任意一个候选名作为工作名称开始定位，定位完成后再做最终命名决策。要现在开始 `brand-positioning` 吗？
