@@ -4,8 +4,8 @@
 > **Company Branding Workflow: Step ④ of 5**
 > ① Naming → ② Positioning → ③ Voice & Messaging → `④ Visual Identity` → ⑤ SEO Content
 >
-> **Prerequisite**: Run `brand-voice` first — visual identity should express the strategy and voice, not lead them. At minimum, you need: brand name, positioning statement, 3-4 voice adjectives.
-> **Input from previous steps**: Brand name, positioning, voice traits, target audience, brand pillars.
+> **Prerequisite**: Run `brand-voice` first — visual identity should express the strategy and voice, not lead them. At minimum, you need: brand name (working or confirmed), positioning statement, 3-4 voice adjectives.
+> **Input from previous steps**: Brand name (working or confirmed), positioning, voice traits, target audience, brand pillars.
 > **What this step produces**: Color palette (with hex codes), typography pairing, logo direction brief, visual do's and don'ts, application guidelines.
 > **After this skill**: Run `seo-content` to start creating content that ranks.
 
@@ -15,15 +15,16 @@ A structured framework for defining the visual direction of a brand. This skill 
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
 
-Rules:
-- Group related questions into one tool call (max 3 questions per call)
-- Use `single_select` for questions with one answer
-- Use `multi_select` for questions where multiple options apply
-- Use `rank_priorities` when the user needs to prioritize
-- Only fall back to prose questions when truly open-ended
-- Keep option labels short (2-6 words)
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -33,50 +34,114 @@ Rules:
 
 ### Round 1 — Brand Context
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "Do you have brand positioning and voice defined already?"
-- Options: Yes, both done / Have positioning only / Have nothing yet / Sort of, loosely defined
+**Q1:**
+- question: "Do you have brand positioning and voice defined already?"
+- header: "Prior work"
+- multiSelect: false
+- options:
+  - { label: "Yes, both done", description: "Positioning + voice complete — ready to define visuals" }
+  - { label: "Positioning only", description: "Have positioning, no voice guidelines yet" }
+  - { label: "Nothing yet", description: "Starting from scratch — will define strategy as we go" }
+  - { label: "Loosely defined", description: "Have some rough ideas but nothing formalized" }
 
-**Q2** (multi_select): "Where will this identity primarily live?"
-- Options: Web app / Mobile app / Marketing website / Pitch deck / Social media / Physical product / Print materials
+**Q2:**
+- question: "Where will this identity primarily live?"
+- header: "Platform"
+- multiSelect: true
+- options:
+  - { label: "Web app / SaaS", description: "Product UI, dashboards, in-app design" }
+  - { label: "Marketing website", description: "Public-facing homepage and landing pages" }
+  - { label: "Social / pitch deck", description: "Social media graphics and investor presentations" }
+  - { label: "Mobile app", description: "iOS / Android — also physical product / print via 'Other'" }
 
-**Q3** (single_select): "Any existing visual assets to keep or replace?"
-- Options: Starting from scratch / Have a logo, want to keep / Have a logo, want to replace / Have partial brand guidelines
+**Q3:**
+- question: "Any existing visual assets to keep or replace?"
+- header: "Existing assets"
+- multiSelect: false
+- options:
+  - { label: "Starting from scratch", description: "No existing visual assets — fully new identity" }
+  - { label: "Keep existing logo", description: "Have a logo, want to build around it" }
+  - { label: "Replace existing logo", description: "Have a logo but want a new one" }
+  - { label: "Partial brand guidelines", description: "Have some guidelines but they need expansion or refresh" }
 
 ### Round 2 — Visual Taste
 
-Present as one `ask_user_input` call with spectrums:
+Call `AskUserQuestion` with 3 questions (visual spectrums):
 
-**Q1** (single_select): "Overall feeling?"
-- Options: Warm & Human / Cool & Technical / Balanced between both
+**Q1:**
+- question: "Overall visual feeling?"
+- header: "Feeling"
+- multiSelect: false
+- options:
+  - { label: "Warm & Human", description: "Organic shapes, warm colors, approachable, consumer-friendly" }
+  - { label: "Cool & Technical", description: "Sharp edges, dark/neutral palette, precise, developer-native" }
+  - { label: "Balanced", description: "Technical backbone with human touch — modern SaaS feel" }
 
-**Q2** (single_select): "Visual complexity?"
-- Options: Minimal & Clean / Rich & Detailed / Somewhere in between
+**Q2:**
+- question: "Visual complexity and energy?"
+- header: "Complexity"
+- multiSelect: false
+- options:
+  - { label: "Minimal & Calm", description: "Clean, lots of whitespace, quiet confidence" }
+  - { label: "Dynamic & Bold", description: "High contrast, strong typography, makes an entrance" }
+  - { label: "Rich & Detailed", description: "Dense information, layered visuals, illustration-heavy" }
 
-**Q3** (single_select): "Energy level?"
-- Options: Calm & Steady / Dynamic & Bold / Depends on context
+**Q3:**
+- question: "Era / vibe?"
+- header: "Era"
+- multiSelect: false
+- options:
+  - { label: "Timeless & Classic", description: "Won't look dated in 5 years — clean fundamentals" }
+  - { label: "Modern & Cutting-edge", description: "Current design trends — dark mode, gradient, glassmorphism" }
+  - { label: "Retro with a twist", description: "Nostalgic references made fresh — vintage color, serif type" }
 
-Then follow up with another `ask_user_input`:
+Then follow up with `AskUserQuestion`:
 
-**Q1** (single_select): "Era / vibe?"
-- Options: Timeless & Classic / Modern & Cutting-edge / Retro with a twist
-
-**Q2** (multi_select): "Brands whose VISUAL style you admire:"
-- Options: Stripe / Linear / Vercel / Apple / Notion / Airbnb / Figma / Nike / Revolut / Other (type next)
+**Q1:**
+- question: "Brands whose VISUAL style you admire:"
+- header: "Visual admire"
+- multiSelect: true
+- options:
+  - { label: "Stripe / Linear", description: "Minimal, precise, dark mode, developer-first" }
+  - { label: "Vercel / Figma", description: "Modern SaaS, bold typography, high contrast" }
+  - { label: "Apple / Notion", description: "Premium, clean, human-centered, light and airy" }
+  - { label: "Other", description: "Type your reference brand(s) in the next message" }
 
 ### Round 3 — Color & Constraints
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (multi_select): "Any color families you're drawn to?"
-- Options: Blue / Purple / Green / Teal / Red-Coral / Orange-Amber / Black & White / Navy / No preference
+**Q1:**
+- question: "Any color families you're drawn to?"
+- header: "Color — draw"
+- multiSelect: true
+- options:
+  - { label: "Blue / Navy / Teal", description: "Trust, stability, professionalism — also Purple via 'Other'" }
+  - { label: "Green / Amber", description: "Growth, optimism, energy — also Red/Coral via 'Other'" }
+  - { label: "Black & White", description: "Premium, bold, high contrast — minimal color approach" }
+  - { label: "No preference", description: "Open to any direction — let the brand strategy lead" }
 
-**Q2** (multi_select): "Any colors to AVOID?"
-- Options: Blue (too corporate) / Red (too aggressive) / Green (too eco) / Purple (too playful) / Orange (too casual) / No restrictions
+**Q2:**
+- question: "Any colors to AVOID?"
+- header: "Color — avoid"
+- multiSelect: true
+- options:
+  - { label: "Blue (too corporate)", description: "Feels generic, overused in B2B/enterprise" }
+  - { label: "Red (too aggressive)", description: "Feels alarming, urgent, or associated with errors" }
+  - { label: "Green (too eco)", description: "Feels like sustainability/environment — wrong association" }
+  - { label: "No restrictions", description: "Open to any color family" }
 
-**Q3** (single_select): "Budget for design execution?"
-- Options: DIY / AI tools / Freelance ($50-500) / Designer ($500-5K) / Agency ($5K+)
+**Q3:**
+- question: "Budget for design execution?"
+- header: "Design budget"
+- multiSelect: false
+- options:
+  - { label: "DIY / AI tools", description: "Canva, Looka, Midjourney — no designer budget" }
+  - { label: "Freelance ($50-500)", description: "Vetted Fiverr or 99designs freelancer" }
+  - { label: "Designer ($500-5K)", description: "Dribbble or Upwork specialist" }
+  - { label: "Agency ($5K+)", description: "Professional brand agency engagement" }
 
 ---
 

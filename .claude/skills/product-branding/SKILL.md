@@ -10,7 +10,16 @@ A complete, 5-step branding system that takes a company from zero to a fully def
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every question should be presented as interactive clickable choices, not plain text.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every question should be presented as interactive clickable choices, not plain text.
+
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -18,10 +27,18 @@ A complete, 5-step branding system that takes a company from zero to a fully def
 
 **Run this FIRST before any module — every time a new branding project starts.**
 
-1. Ask for the project name using `ask_user_input`:
+1. Ask for the project name using `AskUserQuestion`:
 
-   **Q** (free text / single_select): "What should we call this project folder? Use lowercase letters and hyphens (e.g., `my-brand`, `acme-2025`)."
-   - Options: (let user type freely — present 2-3 examples as suggestions)
+   Call `AskUserQuestion` with:
+   - question: "What should we call this project folder? Use lowercase letters and hyphens."
+   - header: "Project name"
+   - multiSelect: false
+   - options:
+     - { label: "my-brand", description: "Simple format — replace with your actual project name via 'Other'" }
+     - { label: "acme-2025", description: "Company + year format — use 'Other' to type your own name" }
+     - { label: "I'll type it", description: "Select 'Other' to enter a custom folder name" }
+
+   The user will typically select "Other" and type their own project name — that is the expected flow.
 
 2. Once confirmed, create the project folder in the repo root:
    - Path: `{repo-root}/{project-name}/`
@@ -42,7 +59,7 @@ A complete, 5-step branding system that takes a company from zero to a fully def
 
 | Step | Module | What It Does | Output |
 |------|--------|-------------|--------|
-| ① | **Naming** | Name generation via Identify → Invent → Implement | Brand name + domain strategy |
+| ① | **Naming** | Name generation via Identify → Invent → Implement | 5 registrable name candidates + domain strategy |
 | ② | **Positioning** | Define market position + differentiation | Positioning statement, value prop, competitive map |
 | ③ | **Voice** | Define how the brand speaks | Tagline, messaging hierarchy, voice guidelines |
 | ④ | **Visual** | Define how the brand looks | Color palette, typography, logo brief |
@@ -85,8 +102,9 @@ When moving from one step to the next, carry forward ALL outputs from previous s
 ```
 === Context from Previous Steps ===
 Project Folder: [repo-root/project-name]
-Name: [confirmed name]
-Domain: [registered domain]
+Name Candidates: [top 5 registrable names from naming module]
+Working Name: [highest-scoring candidate, used as provisional name]
+Domain Options: [best available domain per candidate]
 Positioning: [positioning statement]
 Value Proposition: [one sentence]
 Target Customer: [description]
@@ -108,10 +126,16 @@ After completing each module:
    - File format: include a YAML frontmatter block with `project`, `module`, and `date` fields, followed by the full deliverable content
    - Confirm to the user: "✅ Saved to `{project-name}/0X-module-name.md`"
 
-2. **Then prompt the user** with `ask_user_input`:
+2. **Then prompt the user** with `AskUserQuestion`:
 
-**Q** (single_select): "Step [N] complete! Ready for the next step?"
-- Options: "Yes, let's continue to [next step name]" / "I want to revisit something first" / "That's enough for today"
+   Call `AskUserQuestion` with:
+   - question: "Step [N] complete! Ready for the next step?"
+   - header: "Next step"
+   - multiSelect: false
+   - options:
+     - { label: "Yes, continue", description: "Proceed to [next step name]" }
+     - { label: "Revisit first", description: "Go back and adjust something in this step" }
+     - { label: "Done for today", description: "Save progress and pick up later" }
 
 If "revisit": ask what they want to change and loop back.
 If "enough for today": summarize what's been completed and what's remaining. Tell them they can come back and say "continue branding" to pick up where they left off.
@@ -124,7 +148,7 @@ Each module is a complete, self-contained guide stored in `references/`:
 
 | File | Lines | Content |
 |------|-------|---------|
-| `references/01-naming.md` | ~490 | Lexicon methodology: Identify brief (Diamond Framework) → Invent 60-100 names (3 cognitive perspectives) → Implement (screen → score → domain strategy → recommend) |
+| `references/01-naming.md` | ~490 | Lexicon methodology: Identify brief (Diamond Framework) → Invent 60-100 names (3 cognitive perspectives) → Implement (screen → score → auto-select top 5 registrable candidates) |
 | `references/02-positioning.md` | ~225 | 4 positioning frameworks (Jackson, Dunford, Diamond, Map) → statement + value prop |
 | `references/03-voice.md` | ~265 | Messaging hierarchy → taglines → voice guidelines → tone matrix → AI-ready governance |
 | `references/04-visual.md` | ~330 | Color palette → typography → logo brief → application guidelines |
@@ -136,13 +160,27 @@ Each module is a complete, self-contained guide stored in `references/`:
 
 ## Quick-Start: First Interaction
 
-If the user's first message is vague (e.g., "help me with branding"), use `ask_user_input`:
+If the user's first message is vague (e.g., "help me with branding"), call `AskUserQuestion` with 2 questions:
 
-**Q1** (single_select): "Where are you in the branding process?"
-- Options: Starting from zero / Have a name, need everything else / Have name + positioning, need voice & visuals / Just need SEO content / Not sure, help me figure out
+**Q1:**
+- question: "Where are you in the branding process?"
+- header: "Starting point"
+- multiSelect: false
+- options:
+  - { label: "Starting from zero", description: "No name, no positioning — start at Step ① Naming" }
+  - { label: "Have a name", description: "Name is confirmed, need positioning and everything else" }
+  - { label: "Name + positioning done", description: "Need voice, visuals, and/or SEO content" }
+  - { label: "Not sure", description: "Help me figure out where to start" }
 
-**Q2** (single_select): "What's most urgent right now?"
-- Options: Finding a name + domain / Defining brand strategy / Creating messaging & tagline / Visual identity & logo direction / SEO & content strategy
+**Q2:**
+- question: "What's most urgent right now?"
+- header: "Priority"
+- multiSelect: false
+- options:
+  - { label: "Name + domain", description: "Find and secure the right brand name" }
+  - { label: "Brand strategy", description: "Define positioning, value proposition, target audience" }
+  - { label: "Voice & messaging", description: "Taglines, copy, and tone guidelines" }
+  - { label: "SEO & content", description: "Also covers visual identity direction via 'Other'" }
 
 Based on answers, route to the correct module and start there.
 

@@ -19,15 +19,16 @@ The naming process has **3 phases**. Always follow them in order. Do NOT skip Ph
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions. This includes discovery interview, mode selection, style preferences, and any follow-up clarifications.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
 
-Rules for using `ask_user_input`:
-- Group related questions into one tool call (max 3 questions per call)
-- Use `single_select` for questions with one answer
-- Use `multi_select` for questions where multiple options apply
-- Use `rank_priorities` when the user needs to prioritize options
-- Only fall back to prose questions when the question is truly open-ended (e.g., "describe your product") — and even then, pair it with selectable questions in the same round
-- Keep option labels short (2-6 words each), add descriptions only when needed
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -37,16 +38,35 @@ Rules for using `ask_user_input`:
 
 ### Round 1 — Project Basics
 
-Present as one `ask_user_input` call with 3 questions:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "What are we naming?"
-- Options: Company / Product / Feature / Agent or Assistant / Internal Codename
+**Q1:**
+- question: "What are we naming?"
+- header: "Target"
+- multiSelect: false
+- options:
+  - { label: "Company", description: "The overall brand / organization name" }
+  - { label: "Product", description: "A specific product or app" }
+  - { label: "Agent / Assistant", description: "An AI agent, bot, or assistant" }
+  - { label: "Feature / Codename", description: "A product feature or internal project codename" }
 
-**Q2** (multi_select): "Target audience?"
-- Options: Developers / Enterprise buyers / Consumers / Creators / Investors / Internal team
+**Q2:**
+- question: "Who is the primary target audience?"
+- header: "Audience"
+- multiSelect: true
+- options:
+  - { label: "Developers", description: "Engineers, DevOps, technical builders" }
+  - { label: "Enterprise buyers", description: "B2B decision-makers, procurement, CTOs" }
+  - { label: "Consumers", description: "General public, end users, individuals" }
+  - { label: "Creators", description: "Designers, makers, indie builders — also Investors / internal teams via 'Other'" }
 
-**Q3** (single_select): "Describe your product — what does it do?"
-- Options: "I'll type it in the next message" / "Skip for now"
+**Q3:**
+- question: "Describe your product — what does it do?"
+- header: "Description"
+- multiSelect: false
+- options:
+  - { label: "I'll type it next", description: "I'll describe the product in my next message" }
+  - { label: "Skip for now", description: "Proceed without a description — can add later" }
 
 Then let the user type the description in their reply.
 
@@ -59,44 +79,107 @@ The Diamond Framework reframes naming from "find a word" to "define the desired 
 - **Need:** What's still required to win
 - **Say:** The one message the name must carry
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions (Diamond Framework — Win / Have / Need):
 
-**Q1** (single_select): "What does winning look like for your brand?"
-- Options: Category default/standard / Most trusted & secure / Fastest & best DX / Most innovative / Other (describe next message)
+**Q1:**
+- question: "What does winning look like for your brand? (Diamond: Win)"
+- header: "Win"
+- multiSelect: false
+- options:
+  - { label: "Category standard", description: "Become the default everyone references — 'the Stripe of X'" }
+  - { label: "Most trusted", description: "Recognized as the most secure and reliable option" }
+  - { label: "Best developer experience", description: "Fastest, most elegant, beloved by technical builders" }
+  - { label: "Most innovative", description: "Leading the category with new ideas and approaches" }
 
-**Q2** (single_select): "What's your biggest current advantage?"
-- Options: Strong tech / Unique approach / Team/founder reputation / First mover / Community / None yet
+**Q2:**
+- question: "What's your biggest current advantage? (Diamond: Have)"
+- header: "Have"
+- multiSelect: false
+- options:
+  - { label: "Strong technology", description: "Superior technical solution that competitors can't match" }
+  - { label: "Unique approach", description: "Different way of solving the problem — methodology or model" }
+  - { label: "Community / traction", description: "Existing users, community, or first-mover status" }
+  - { label: "None yet", description: "Early stage — also: team/founder reputation via 'Other'" }
 
-**Q3** (single_select): "What do you still need to win?"
-- Options: Brand recognition / User trust / Developer adoption / Funding / Distribution / All of the above
+**Q3:**
+- question: "What do you still need to win? (Diamond: Need)"
+- header: "Need"
+- multiSelect: false
+- options:
+  - { label: "Brand recognition", description: "People need to know we exist" }
+  - { label: "Developer adoption", description: "Need technical users to build with us" }
+  - { label: "Enterprise trust", description: "Need credibility with serious buyers" }
+  - { label: "Distribution", description: "Need better reach, partnerships, or channels" }
 
-Then ask in a follow-up `ask_user_input`:
+Then follow up with `AskUserQuestion` for the Say vertex:
 
-**Q1** (single_select): "What one message should the name convey?"
-- Options: Security & trust / Speed & efficiency / Innovation / Simplicity / Power & scale / Other
+**Q1:**
+- question: "What one message should the name convey? (Diamond: Say)"
+- header: "Say"
+- multiSelect: false
+- options:
+  - { label: "Security & trust", description: "The name should feel safe, credible, reliable" }
+  - { label: "Speed & efficiency", description: "Fast, lightweight, no friction" }
+  - { label: "Innovation", description: "Forward-looking, cutting-edge, first-of-its-kind" }
+  - { label: "Simplicity & clarity", description: "Easy, calm, minimal — or 'Power & scale' via 'Other'" }
 
 ### Round 3 — Tone & Style
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 2 questions:
 
-**Q1** (multi_select): "Pick 1-2 style directions that fit:"
-- Options: Short & Punchy / Technical / Professional / Playful / Abstract / Premium / Human / Mythic / Minimal / AI-Native
+**Q1:**
+- question: "Pick 1-2 style directions that fit your brand:"
+- header: "Style — want"
+- multiSelect: true
+- options:
+  - { label: "Short & Punchy", description: "4-6 letters, hard consonants, instant recall (e.g., Stripe, Snap)" }
+  - { label: "Abstract / Minimal", description: "Non-literal, clean, category-scalable (e.g., Linear, Notion)" }
+  - { label: "Technical", description: "Precise, developer-native, system-like (e.g., Vercel, Twilio)" }
+  - { label: "Human / Playful", description: "Warm, approachable, consumer-friendly — or Premium/Mythic via 'Other'" }
 
-**Q2** (multi_select): "Which styles do you NOT want?"
-- Options: Short & Punchy / Technical / Professional / Playful / Abstract / Premium / Human / Mythic / Minimal / AI-Native
+**Q2:**
+- question: "Which styles do you NOT want?"
+- header: "Style — avoid"
+- multiSelect: true
+- options:
+  - { label: "Short & Punchy", description: "Avoid very short, hard-sounding names" }
+  - { label: "Abstract / Minimal", description: "Avoid names that feel too vague or cold" }
+  - { label: "Technical", description: "Avoid names that feel too nerdy or niche" }
+  - { label: "Human / Playful", description: "Avoid names that feel too casual, cute, or consumer-focused" }
 
 ### Round 4 — Constraints
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (multi_select): "Any themes to AVOID?"
-- Options: Avoid "AI/GPT" trend words / Avoid too-literal words (Pay, Wallet) / Avoid crypto/web3 vibes / Avoid anything too cute/playful / No restrictions
+**Q1:**
+- question: "Any themes to AVOID in the name?"
+- header: "Avoid themes"
+- multiSelect: true
+- options:
+  - { label: "AI/GPT trend words", description: "No 'AI', 'GPT', 'neural', 'smart' — dates badly" }
+  - { label: "Too-literal words", description: "Avoid function-first names like Pay, Wallet, Send, Auth" }
+  - { label: "Crypto/web3 vibes", description: "No chain, block, token, mint — even if unintentional" }
+  - { label: "No restrictions", description: "Open to any direction — let the brief lead" }
 
-**Q2** (multi_select): "Any themes you're drawn to?"
-- Options: Trust / Safety / Speed / Flow / Infrastructure / Innovation / No preference, surprise me
+**Q2:**
+- question: "Any themes you're drawn to?"
+- header: "Draw to"
+- multiSelect: true
+- options:
+  - { label: "Trust & safety", description: "Names that feel secure, stable, reliable" }
+  - { label: "Speed & flow", description: "Names that feel fast, smooth, effortless" }
+  - { label: "Infrastructure", description: "Names that feel like solid, serious plumbing" }
+  - { label: "No preference", description: "Surprise me — let the brief guide the direction" }
 
-**Q3** (multi_select): "Domain preference? (these are guidelines, not hard gates)"
-- Options: .com strongly preferred / .ai is fine / .io is fine / Any TLD is fine / I'll buy whatever domain is needed
+**Q3:**
+- question: "Domain preference? (guideline, not a gate)"
+- header: "Domain"
+- multiSelect: true
+- options:
+  - { label: ".com preferred", description: "Strongest trust signal — will work hard to get it" }
+  - { label: ".ai is fine", description: "Good for AI-native companies, modern and accepted" }
+  - { label: ".io is fine", description: "Developer-familiar, common for tools and platforms" }
+  - { label: "Any TLD works", description: "Including .co, .dev, .xyz — the name matters more" }
 
 Then ask as a follow-up prose question if needed: language requirements, length preference, any geographic or linguistic constraints.
 
@@ -150,8 +233,14 @@ Pretend you're naming something in a completely different industry — luxury go
 | 6 | **Acronym / Initialism** | Letters from a phrase | IBM, BMW, SAP | Moderate |
 | 7 | **Foreign Word** | Borrowed or adapted from another language | Samsung, Lego, Asana | Moderate-Strong |
 | 8 | **Phonetic Shift** | Real word with intentional spelling change | Lyft, Tumblr, Fiverr | Moderate |
+| 9 | **Morpheme-Engineered** | Sub-word meaning units extracted from concept words and assembled into a new word — Lexicon's core technique | Vercel, Verizon, Accenture, Pinterest | Strongest (Fanciful) |
+| 10 | **Eponymous / Founder** | Named after a founder or person | Tesla, Disney, Dell, Dyson, Bloomberg | Moderate |
+| 11 | **Personification** | A human first name given to a non-human entity | Alexa, Siri, Oscar, Alice, Ada | Strong |
+| 12 | **Onomatopoeia** | A word that mimics a sound or action | Zoom, Ping, Snap, Twitter, Bing | Moderate-Strong |
+| 13 | **Truncation / Clipping** | Clipped from a longer word or phrase | Intel, Cisco, FedEx, Amex | Moderate |
+| 14 | **Alphanumeric** | Contains numerals as part of the name | 3M, 1Password, 7-Eleven, 23andMe | Moderate |
 
-**Distribution target:** 70%+ should be Invented, Abstract, or Compound types. These have the strongest trademark position and highest ownability.
+**Distribution target:** 70%+ should be Invented, Abstract, Compound, or **Morpheme-Engineered** types. These have the strongest trademark position and highest ownability.
 
 ### Semantic Lenses (guide root selection)
 
@@ -166,17 +255,26 @@ Pretend you're naming something in a completely different industry — luxury go
 
 ### Sound Psychology (apply to all candidates)
 
-Sound shapes perception. Even invented words should feel right:
+Sound shapes perception. Every letter class below is equally viable — choose based on the emotional register the product needs, not personal preference. No single letter or cluster is inherently superior.
 
-| Letter / Sound | Psychological Effect | Example Names |
-|----------------|---------------------|---------------|
-| **V** | Most alive and vibrant — chosen deliberately for Vercel | Vercel, Vimeo, Vivid |
-| **B** | Stable, trustworthy, grounded | BlackBerry, Basecamp, Bench |
-| **Z** | Distinctive, modern, energetic | Azure, Zoom, Zappos |
-| **X** | Technical, futuristic, unknown | SpaceX, Xerox, Xero |
-| **Hard consonants** (B, T, K, P) | Force, clarity, confidence | Stripe, Block, Snap |
-| **Soft sounds** (S, L, M) | Flow, calm, friendliness | Loom, Sonos, Slack |
-| **Open vowels** (O, A) | Warm, broad, human | Canva, Sonos |
+| Letter / Sound | Emotional Register | Best For | Example Names |
+|----------------|-------------------|----------|---------------|
+| **S, Sl, Str** | Flow, speed, smoothness | Tools, productivity, dev | Stripe, Slack, Stream, Sonos |
+| **R** | Reliable, grounded, rolling momentum | Infrastructure, B2B, fintech | Relay, Ramp, Render, Ripple |
+| **L** | Light, elegant, calm clarity | Creative tools, consumer, design | Linear, Loom, Lark, Lattice |
+| **K, hard C** | Sharp, decisive, confident | Security, performance, enterprise | Clerk, Cribl, Kafka, Okta |
+| **T** | Precise, technical, direct | Dev tools, data, APIs | Twilio, Turso, Tinybird |
+| **P** | Purposeful, clear, polished | Consumer, SaaS, productivity | Plex, Plaid, Pulumi, Postman |
+| **N** | Neutral, modern, approachable | Platforms, broad B2B | Notion, Netlify, Neon, Novu |
+| **F** | Fast, forward, confident | Speed-first products, finance | Fly, Forge, Fauna, Figma |
+| **B** | Stable, trustworthy, grounded | Infrastructure, finance, security | BlackBerry, Basecamp, Brex |
+| **V** | Vibrant, alive, kinetic | Agent, AI, dynamic platforms | Vercel, Vimeo, Vertex |
+| **Z** | Distinctive, modern, energetic | Consumer, video, attention-grabbing | Zoom, Zappos, Zed |
+| **X** | Futuristic, technical, unknown | Deep tech, research, frontier | Xero, Oxide, Phoenix |
+| **Open vowels (O, A)** | Warm, broad, human | Consumer, global, horizontal | Canva, Notion, Asana, Okta |
+| **Soft clusters (Gl, Fl, Sl)** | Light, vision, motion | Creative, design, visual tools | Glide, Flow, Slate |
+
+**Diversity rule:** Across the ~20 shortlisted candidates, no more than 2–3 names should share the same starting letter, and no more than 2 names should share the same suffix pattern (e.g. -vel, -ix, -ra, -ex). If a cluster forms, replace with candidates from underrepresented letter classes.
 
 ### Generation Methods
 
@@ -190,64 +288,251 @@ Sound shapes perception. Even invented words should feel right:
 | **Classical Roots** | Greek/Latin roots create technical abstraction | lumen, nexus, vertex, axis |
 | **Cross-Language Blend** | Mix roots from 2+ languages | Latin lux + Japanese ki→lukzai |
 | **Real-Word Theft** | Use a real word from the wrong category | Stripe, Notion, Linear, Ramp |
+| **Morpheme Engineering** | Extract sub-word meaning units from concept words → combine into a new word that carries semantic DNA without being recognizable as either source | versatile+accelerate→Vercel, veritas+horizon→Verizon, accent+future→Accenture |
+| **Syllable Splicing** | Extract specific syllables from words and reassemble | Spotify (spot+ify), Netflix (net+flix), Instagram (instant+telegram) |
+| **Letter Subtraction** | Remove letters (usually vowels) from an existing word | Flickr, Tumblr, Grindr, Scribd |
+| **Reduplication** | Repeat a syllable or sound pattern | TikTok, Lululemon, Bonbon, Murmur |
+| **Alliterative Construction** | Build a name with repeating initial consonants | Coca-Cola, PayPal, Best Buy, Krispy Kreme |
+| **Prefix / Suffix Grafting** | Attach systematic affixes to a root | Uber-, Shopify (-ify), Bitly (-ly), Calendly |
+| **Truncation + Suffix** | Clip a word down to its root, then add a new ending | Accel(-a), Forgo(-io), Prism(-atic) |
+| **Phonestheme Mining** | Use sound clusters that carry consistent psychological meaning across many words | gl- (light/vision): Glow, Gleam, Glint — sn- (quick/sharp): Snap, Swift — str- (force): Stripe, Strong |
+
+### Morpheme Engineering — Lexicon's Core Technique
+
+This is the method behind Vercel, Verizon, Accenture, and Pinterest. Unlike portmanteau (which blends two recognizable whole words), morpheme engineering extracts sub-word meaning units and assembles them into a word that carries semantic DNA without being recognizable as either source word. The result sounds natural and linguistic — not invented — yet is completely ownable.
+
+**4-Step Process:**
+
+**Step 1 — Concept Harvest.** List 15–20 words that capture what the brand should evoke.
+> For Vercel: *versatile, velocity, accelerate, excel, vertical, universal, veritas*
+
+**Step 2 — Morpheme Extraction.** Break each word into its meaningful fragments.
+```
+versatile  → ver- | -sat- | -ile
+accelerate → ac-  | -cel- | -erate
+excel      → ex-  | -cel
+veritas    → ver- | -itas
+universal  → uni- | -ver- | -sal
+```
+
+**Step 3 — Combination Matrix.** Test fragment pairings systematically. Look for combinations that:
+- Sound like a real word but aren't
+- Carry the emotional weight of the source roots
+- Pass the phone test on first attempt
+
+```
+ver + cel  → Vercel  ✓
+ver + sat  → Versat
+ac  + cel  → Accel   (too literal)
+ex  + ile  → Exile   (exists — skip)
+uni + vel  → Univel
+```
+
+**Step 4 — Phonetic Validation.** Run top candidates through:
+- Pronounceable on first attempt?
+- Sounds like a real word but isn't?
+- Right psychological register? (apply Sound Psychology table)
+- Passes phone test — can be spelled after hearing once?
+
+**Why this method produces the strongest names:**
+- Highest trademark strength — fanciful category, no prior meaning
+- Carries layered semantic meaning that rewards discovery
+- Sounds natural and linguistic, not random or invented
+- Impossible to reverse-engineer the source words — maximum ownability
 
 ### Presenting the Candidate Set
 
-After generating all 60–100 candidates across three perspectives, present them organized by perspective with brief notes on the root/feeling behind each cluster. Do NOT score or filter yet — present the full set.
+After generating all 60–100 candidates across three perspectives, run a **Conflict Pre-Screen** to produce a clean shortlist — before showing the user anything.
 
-Then ask:
+**Pre-Screen — efficiency rule: run searches in parallel**
+1. Identify the 20–30 strongest-looking candidates from all three perspectives
+2. Run 1 WebSearch per name (bare name only, no qualifiers) — use parallel Agent tool calls in batches of 4–6 names each to maximize speed
+3. Eliminate any 🔴 blocker (existing company, consumer brand, famous person, geographic name)
+4. Target output: **~20 surviving candidates**
 
-**`ask_user_input` (multi_select):** "Which of these feel like they're in the right territory? Select as many as feel interesting."
+**IMPORTANT: Do NOT show the user anything during pre-screening. No intermediate updates, no "checking..." messages.** Run all searches silently.
 
-If the user selects 10+, proceed to Phase 3.
-If the user selects fewer than 5, discuss what's missing and generate another round of 20-30 with adjusted direction.
+**Domain Pre-Check — run in the same silent pass as conflict pre-screening:**
+
+For each of the ~20 surviving candidates, run WebSearch to determine domain availability:
+- `"[name].com"` — if an active website appears, .com is TAKEN
+- `"[name].ai"` — if an active website appears, .ai is TAKEN
+- `"[name].io"` — if an active website appears, .io is TAKEN
+
+Interpret results:
+- Active company website in results → TAKEN
+- Domain parking / "for sale" page → TAKEN (but may be purchasable)
+- No website results / domain listed as available → Likely AVAILABLE
+- Inconclusive → Note for user manual verification on Cloudflare; score as 2
+
+**Do NOT run bash, Python, curl, WHOIS, or RDAP commands.** WebSearch only. If uncertain, ask the user to verify at `dash.cloudflare.com/domains`.
+
+Use domain results to apply the real Domain Availability score (1–5 rubric) before scoring.
+
+**Score all ~20 surviving candidates immediately** on the 11-dimension matrix (1–5 per dimension, max 55). Use the conflict pre-screen results for Distinctiveness, Searchability, and Trademark Strength. Use the domain pre-check results for Domain Availability (real score, not provisional).
+
+**Present the full scoring matrix as the first output to the user:**
+
+| Name | Perspective | Mem | Pro | Spl | Dis | Fit | Sca | Sea | TM | Int | Pho | Dom | **Total** |
+|------|-------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----------|
+| Forvel | A | 4 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 4 | 4 | 4 | **52** |
+| Orbvel | C | 4 | 4 | 4 | 4 | 4 | 5 | 4 | 5 | 4 | 4 | 2 | **44** |
+| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+
+Column key: Mem=Memorability, Pro=Pronounceability, Spl=Spellability, Dis=Distinctiveness, Fit=Brand Fit, Sca=Scalability, Sea=Searchability, TM=Trademark Strength, Int=International Safety, Pho=Phonetic Quality, Dom=Domain Availability (real)
+
+Sort by Total descending. Include all ~20 names — don't pre-select for the user.
+
+**Then automatically select the top 5 registrable candidates:**
+
+From the scored ~20 candidates, auto-select the top 5 by Total score where:
+1. Conflict status is not 🔴 (already eliminated in pre-screen)
+2. Domain Availability score >= 3 (meaning at least .ai-only or .io+.co available)
+
+If fewer than 5 meet Domain >= 3, relax to Domain >= 2 to fill remaining slots.
+
+After the matrix, output:
+
+> 根据可注册性（无冲突 + 域名可用）和总分，以下 5 个候选名进入深度审查：
+
+| Name | Total /55 | Domain Status | Brand Logic |
+|------|-----------|---------------|-------------|
+| [Name A] | XX | .ai/.io available | [one-line] |
+| [Name B] | XX | .com available | [one-line] |
+| ... | ... | ... | ... |
+
+Proceed to Phase 3 with these 5 names. Do NOT ask the user to choose — present all 5 as equal candidates.
+
+> **Note:** If the user finds none of these appealing after reviewing, generate another batch of 20–30 names with adjusted direction and repeat the pre-screen.
 
 ---
 
 ## Phase 3: Implement
 
-**Goal:** Take the user's selections through screening, scoring, domain logistics, conflict checking, and final recommendation. This is where the name becomes a brand asset.
+**Goal:** Take the top 5 registrable candidates through full evidence — conflict deep-dive, domain verification, and final scoring — then present all 5 as equal candidates for the user to consider.
 
-### Step 1: First-Pass Filter
+The top 5 names were automatically selected in Phase 2 based on registrability (clean conflicts + domain availability) and total score. Proceed to conflict screening and domain verification for all 5.
 
-From the user's selected candidates, remove names that fail any hard rule:
+### Output Rule
 
-**Hard Rules (any violation eliminates the name):**
-1. Cannot be pronounced correctly on first attempt
-2. Cannot be spelled after hearing it once
-3. Obvious same-category company conflict (same name, same space)
-4. Severe negative meaning in any target market language
-5. Too descriptive to scale beyond one narrow feature
+Phase 3 outputs in two rounds. Do not merge them.
 
-**Soft Rules (lower priority, not automatic elimination):**
-- .com unavailable at standard pricing
-- Slightly longer than ideal
-- More abstract than the team is used to
-- Not instantly loved on first read (this is often a *good* sign)
+**Round 1 — Name Overview Table (output immediately, before any searching):**
 
-Present the surviving names after filtering.
+Present a clean table confirming which names are entering Phase 3:
 
-### Step 2: Score Survivors
+| 名字 | 视角 | 品牌逻辑 |
+|------|------|---------|
+| [Name A] | A / B / C | [one-line] |
+| [Name B] | ... | ... |
 
-Score each surviving candidate (1–5 per category, max 50):
+**Round 2 — Detailed Evidence per Name (output after all searches complete):**
+
+For each name that survives conflict screening, present a structured evidence block:
+
+```
+### [Name]
+
+**冲突检验：** 🟢/🟡/🔴
+- 搜索 1 "[Name]"：[摘要 — 有/无冲突，来源]
+- 搜索 2 "[Name]" company/brand：[摘要]
+- 判定：[Clean / Minor conflict with X (different industry) / Blocker — X in same space]
+
+**域名可用性：**
+| TLD | 状态 |
+|-----|------|
+| .com | ✅ Available / ❌ Taken |
+| .ai  | ✅ / ❌ |
+| .io  | ✅ / ❌ |
+| .co  | ✅ / ❌ |
+
+**评分（/55）：**
+| 维度 | 分 | 理由 |
+|------|----|----|
+| Memorability | 4 | [why] |
+| Pronounceability | 5 | [why] |
+| ... | ... | ... |
+| Domain Availability | 4 | .ai/.io/.co 可用，.com 监控中 |
+| **Total** | **XX** | |
+```
+
+After all evidence blocks are presented, output the Scoring Matrix (all names × all dimensions) and Top 3 recommendation.
+
+---
+
+### Step 1: Conflict Screening
+
+Run conflict checks on ALL first-pass survivors **before scoring**. This saves time and prevents scoring names that will be eliminated.
+
+**Efficiency rule: run all conflict searches in parallel.** Use multiple WebSearch calls in a single message (or Agent tool batches) — never search one name at a time sequentially. For 5–8 names, this takes one round instead of 8 rounds.
+
+**For each surviving name, run at minimum 2 WebSearch queries:**
+
+1. `"[name]"` — bare name, no qualifiers. Read the FULL first page. Look for: companies (any industry), consumer brands, food/products, famous people, geographic names, Wikipedia entries.
+2. `"[name]" company` OR `"[name]" brand` OR `"[name]" product` — catch consumer brand and food conflicts that the first search may rank lower.
+
+**If the name looks clean after those 2 searches, also run:**
+3. `site:[name].com` — check if an active website exists at that domain.
+
+**Output conflict findings as part of Round 2 evidence blocks** (see Two-Round Output Rule above) — not as intermediate progress updates.
+
+**Conflict flags:**
+- 🟢 Clean — no meaningful conflicts found across all searches
+- 🟡 Minor — same name exists in a clearly unrelated industry (e.g. a local restaurant); note it but keep the name. If a well-known consumer brand (food, clothing) shares the name, also flag 🟡 and reduce Searchability score by 1–2 points.
+- 🔴 Blocker — same name in same or adjacent category → eliminate immediately
+
+**Also check:** social handle availability on X (Twitter), LinkedIn, GitHub, Product Hunt for top survivors.
+
+If a target-language market is specified, check for profanity, negative connotations, or awkward sound-alikes.
+
+### Step 2: Domain Verification
+
+Domain availability was already checked via WebSearch in Phase 2 during the pre-screen pass. The Domain Availability scores in the matrix reflect those results.
+
+For any names where Phase 2 results were inconclusive, ask the user to manually verify on Cloudflare before the final recommendation:
+
+Use `AskUserQuestion` with the specific TLDs to check: `dash.cloudflare.com/domains`
+
+Always ask the user to confirm the top 1–2 candidates on Cloudflare before registering — WebSearch results indicate *likely* availability, not ground truth.
+
+**Domain resolution options (for final recommendation):**
+- **Available at standard price** → Register on Cloudflare at-cost
+- **Taken — .ai/.io available** → Use alternate TLD (entirely normal for modern AI/dev startups)
+- **Taken — variant available** → `get[name].com` or `use[name].com` are legitimate launch options
+- **Taken — worth buying** → For a truly great name, $5K–$30K domain purchase is rational; the name compounds in value for decades
+
+### Step 3: Update Scores with Real Evidence
+
+The user's selected names already have provisional scores from Phase 2. Now update the scores for these names using real evidence: apply conflict findings to Distinctiveness and Searchability, and replace the provisional Domain Availability score (3) with the real result from Step 2.
 
 | Category | Question |
 |----------|----------|
 | **Memorability** | Will people remember it after one exposure? |
 | **Pronounceability** | Can most users say it correctly? |
 | **Spellability** | Can users spell it after hearing it? |
-| **Distinctiveness** | Does it stand apart from same-category brands? |
+| **Distinctiveness** | Does it stand apart from same-category brands? Lower if 🟡 conflict exists. |
 | **Brand Fit** | Does it feel right for this product and audience? |
 | **Scalability** | Will it still work after expansion or pivot? |
-| **Searchability** | Can it rank and be found without noise? |
+| **Searchability** | Can it rank and be found without noise? Lower if consumer brand conflict creates search noise. |
 | **Trademark Strength** | Is it likely ownable (not descriptive)? |
 | **International Safety** | Does it travel well across markets? |
 | **Phonetic Quality** | Does the sound carry the right psychological register? |
+| **Domain Availability** | Are priority TLDs available? Use results from Step 3. |
 
-**Thresholds:**
-- 40+ = Strong shortlist candidate
-- 32–39 = Review manually
-- <32 = Likely too weak
+**Domain Availability scoring rubric:**
+
+| Score | Condition |
+|-------|-----------|
+| 5 | .com available |
+| 4 | .ai + at least one other TLD (.io or .co) available |
+| 3 | .ai only available, OR .io + .co available (no .ai) |
+| 2 | Only one secondary TLD available (.io or .co) |
+| 1 | Only fallback patterns available (get[name].com, use[name].com) |
+
+**Thresholds (out of 55):**
+- 44+ = Strong shortlist candidate
+- 35–43 = Review manually
+- <35 = Likely too weak
 
 ### The 10 Core Tests (apply to top candidates)
 
@@ -264,103 +549,84 @@ Score each surviving candidate (1–5 per category, max 50):
 
 > **Placek's Discomfort Principle:** If the whole team immediately loves a name, it's probably too safe. Great names — Sonos ("not entertainment enough"), Azure ("dumb"), BlackBerry ("crazy") — were rejected or polarizing at first. Polarization is a signal of strength, not a reason to retreat.
 
-### Step 3: Conflict Screening
+### Step 4: Final Recommendation
 
-For each of the **top 5 scored names**, use web search to check:
-- `"[name]" + [industry keywords]` — existing companies in same space
-- `"[name]" startup` or `"[name]" app` — early-stage conflicts
-- `"[name]" trademark` — registered marks
-
-Flag results as:
-- 🟢 Clean — no meaningful conflicts found
-- 🟡 Minor — same name exists but in a different industry (restaurant, etc.)
-- 🔴 Blocker — same name in same or adjacent category
-
-Search for social handle conflicts: X (Twitter), LinkedIn, GitHub, Product Hunt.
-
-If a target-language market is specified, check for profanity, negative connotations, or awkward sound-alikes.
-
-### Step 4: Domain Strategy
-
-Domain is a logistics problem. Present options clearly — do not eliminate names based on domain availability.
-
-For each shortlisted name, check and present:
+**First, output the Scoring Matrix** — all shortlisted names side-by-side across all 11 dimensions:
 
 ```
-=== Domain Situation: [name] ===
-
-| Domain          | Status | Notes                        |
-|-----------------|--------|------------------------------|
-| [name].com      | ✅/❌   | Available / Registered       |
-| [name].ai       | ✅/❌   | Available / Registered       |
-| [name].io       | ✅/❌   | Available / Registered       |
-| get[name].com   | ✅/❌   | Variant option               |
-| use[name].com   | ✅/❌   | Variant option               |
+| Dimension            | [Name A] | [Name B] | [Name C] |
+|----------------------|----------|----------|----------|
+| Memorability         |    4     |    4     |    3     |
+| Pronounceability     |    5     |    5     |    4     |
+| Spellability         |    5     |    5     |    4     |
+| Distinctiveness      |    5     |    4     |    4     |
+| Brand Fit            |    5     |    5     |    4     |
+| Scalability          |    5     |    5     |    5     |
+| Searchability        |    5     |    4     |    5     |
+| Trademark Strength   |    5     |    5     |    5     |
+| International Safety |    4     |    4     |    4     |
+| Phonetic Quality     |    4     |    4     |    3     |
+| Domain Availability  |    4     |    3     |    2     |
+| **Total /55**        |  **51**  |  **48**  |  **43**  |
 ```
 
-**Domain resolution options (present all that apply):**
-- **Available at standard price** → Register on Cloudflare at-cost
-- **Taken — .ai/.io available** → Use alternate TLD (entirely normal for modern startups)
-- **Taken — variant available** → `get[name].com` or `use[name].com` are legitimate launch options
-- **Taken — worth buying** → For a truly great name, $5K–$30K domain purchase is rational; the name compounds in value over decades
-- **Taken — check expiry** → Some domains are registered but unused; check WHOIS for expiry
+**Then, present all 5 registrable candidates with equal weight:**
 
-Use RDAP to verify availability (no API key required):
-```bash
-# HTTP 404 = available, HTTP 200 = taken
-curl -s -o /dev/null -w "%{http_code}" "https://rdap.org/domain/{name}.{tld}"
-```
-
-### Step 5: Final Recommendation
-
-Present the **top 3 names** with:
+For each of the 5 candidates, present a card in this format:
 
 | Field | Details |
 |-------|---------|
-| **Name** | The winning name |
-| **Score** | Full breakdown from Step 2 |
-| **Domain Path** | Best available domain option and resolution strategy |
-| **Conflicts** | Results from Step 3 |
+| **Name** | The name |
+| **Score** | Total /55 (reference matrix above) |
+| **Domain Path** | Best available domain + registration strategy |
+| **Conflicts** | Conflict screening result (🟢/🟡/🔴) |
 | **Brand Rationale** | Why this name works — roots, sound psychology, strategic fit |
-| **Next Steps** | Secure domain → trademark counsel → team feedback → 48-hour rest test |
 
-**48-hour rest test:** Ask the team to sit with the top name for two days before deciding. Great names become more believable with repetition, not less. If a name still feels right after 48 hours of repeated exposure, it's strong.
+Do NOT rank them gold/silver/bronze or declare a winner. All 5 are presented as equal candidates.
 
-If conflict screening eliminates a finalist, pull up the next scored candidate.
+If conflict screening eliminates one of the 5, pull up the next scored candidate from the ~20 pool.
+
+**Closing section — output after all 5 candidate cards:**
 
 ---
 
-## Appendix: Domain Tools & Pricing Reference
+### What's Next
 
-### Domain Search Tools
+这 5 个名字都通过了可注册性检验（无冲突 + 域名可用）。命名决策不需要着急——好名字需要时间发酵。
 
-**Availability Check: RDAP**
-```bash
-# HTTP 404 = available, HTTP 200 = taken
-curl -s -o /dev/null -w "%{http_code}" "https://rdap.org/domain/example.com"
-```
-Free, no API key required, covers all target TLDs (.com .ai .io .co .dev .xyz .sh .app .tech).
+**不需要现在做决定。** 把这 5 个名字放在那里，边用边感受。
 
-**Registration: Cloudflare Registrar (preferred)**
-At-cost pricing, no markup, free WHOIS privacy + DNSSEC.
-Go to `dash.cloudflare.com/domains` once a domain is confirmed available.
+**准备好之后：**
+1. **48小时沉淀测试** — 把你最有感觉的名字反复念两天。好名字越念越对，越念越有感觉。
+2. **Cloudflare 手动验证** — 在 `dash.cloudflare.com/domains` 确认域名可用性（WebSearch 结果仅供参考，不是最终状态）
+3. **注册域名** — Cloudflare Registrar 以成本价注册
+4. **商标咨询** — 5 个候选名都属于强商标类别（非描述性），建议在决策后尽早咨询
 
-**Deep Verification (use for final shortlist):**
+**现在可以继续品牌定位：** 品牌定位是战略层工作，不依赖于最终名字。选任意一个候选名作为工作名称（working name），定位完成后再做最终命名决策。
 
-| Tool | URL | Why Use It |
-|------|-----|-----------|
-| **WHOIS Lookup** | whois.com/whois | See who owns a taken domain; check expiry |
-| **ICANN WHOIS** | lookup.icann.org | Official source; most accurate |
-| **Wayback Machine** | web.archive.org | Check domain history; brand contamination risk |
+---
 
-**Premium Domain Marketplaces:**
+## Appendix: Domain Reference
 
-| Marketplace | URL | Notes |
-|-------------|-----|-------|
-| **Sedo** | sedo.com | Largest domain marketplace; auction + fixed price |
-| **Dan.com** | dan.com | Simple buy/lease; installment plans |
-| **Afternic** | afternic.com | GoDaddy's marketplace; huge inventory |
-| **BrandBucket** | brandbucket.com | Curated premium names $1K–$50K; includes logo |
+### Domain Availability Verification
+
+| Tier | Method | Reliability |
+|------|--------|-------------|
+| 1 | WebSearch `"[name].com"` / `"[name].ai"` | Moderate — shows active sites |
+| 2 | User manual check on `dash.cloudflare.com/domains` | Ground truth |
+
+Domain availability is checked in Phase 2 via WebSearch during the pre-screen pass. **Do not run bash, Python, curl, or WHOIS commands.** If WebSearch results are inconclusive, ask the user to verify on Cloudflare.
+
+**Recommended registrar:** Cloudflare Registrar (at-cost): `dash.cloudflare.com/domains`
+
+**Premium Domain Marketplaces (if target domain is taken):**
+
+| Marketplace | Notes |
+|-------------|-------|
+| **Sedo** | Largest marketplace; auction + fixed price |
+| **Dan.com** | Simple buy/lease; installment plans |
+| **Afternic** | GoDaddy's marketplace; huge inventory |
+| **BrandBucket** | Curated premium names $1K–$50K; includes logo |
 
 ### Cloudflare At-Cost Pricing Reference
 
@@ -432,14 +698,14 @@ Always warn the user if candidates fall into these traps:
 
 | Company Type | Best Name Bias |
 |-------------|----------------|
-| AI / ML startup | Invented, abstract, evocative |
-| Developer tool | Abstract, technical, compound |
-| Consumer app | Invented, playful, warm |
-| Enterprise SaaS | Professional, abstract, stable |
+| AI / ML startup | Invented, abstract, evocative, morpheme-engineered |
+| Developer tool | Abstract, technical, compound, truncation |
+| Consumer app | Invented, playful, warm, personification, onomatopoeia |
+| Enterprise SaaS | Professional, abstract, stable, morpheme-engineered |
 | Security product | Hard consonants, mythic, trustworthy |
-| Fintech | Short, credible, precise |
+| Fintech | Short, credible, precise, alphanumeric |
 | Creative tool | Abstract, soft, elegant |
-| Agent / assistant | Human, warm, memorable |
+| Agent / assistant | Personification, human, warm, memorable |
 
 ---
 
@@ -471,8 +737,11 @@ After presenting the final recommendation to the user, save the deliverables to 
 
    # Brand Naming
 
-   ## Final Recommendation
-   [top 3 names with scores, domain situation, conflicts, rationale]
+   ## Scoring Matrix
+   [11-dimension × N-name matrix table, totals /55]
+
+   ## 5 Registrable Candidates
+   [5 names with equal presentation: score, domain situation, conflicts, brand rationale]
 
    ## Full Candidate Set
    [all candidates by perspective]
@@ -488,4 +757,4 @@ After presenting the final recommendation to the user, save the deliverables to 
 
 After completing this skill, prompt the user:
 
-> **Name secured!** The next step in the branding workflow is **brand positioning** — defining how your brand is perceived in the market. This feeds into everything else: messaging, visuals, and content. Want to start `brand-positioning` now?
+> **5 个可注册候选名已就绪！** 你不需要现在做决定——好名字需要时间发酵。下一步是 **品牌定位**——我们可以用任意一个候选名作为工作名称开始定位，定位完成后再做最终命名决策。要现在开始 `brand-positioning` 吗？

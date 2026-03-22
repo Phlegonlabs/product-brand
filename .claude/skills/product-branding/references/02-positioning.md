@@ -4,7 +4,7 @@
 > **Company Branding Workflow: Step ② of 5**
 > ① Naming → `② Positioning` → ③ Voice & Messaging → ④ Visual Identity → ⑤ SEO Content
 >
-> **Prerequisite**: Run `brand-naming` first — you need a confirmed name + domain before positioning.
+> **Prerequisite**: Run `brand-naming` first — you need at least a working name from the naming candidates. A final name decision is NOT required — positioning work transfers across candidates.
 > **What this step produces**: Positioning statement, value proposition, key differentiators, target customer profile, competitive map.
 > **After this skill**: Run `brand-voice` to turn positioning into messaging.
 
@@ -12,15 +12,16 @@ A structured framework for defining how a brand is perceived in the market. This
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
 
-Rules:
-- Group related questions into one tool call (max 3 questions per call)
-- Use `single_select` for questions with one answer
-- Use `multi_select` for questions where multiple options apply
-- Use `rank_priorities` when the user needs to prioritize
-- Only fall back to prose questions when truly open-ended (e.g., "describe your product")
-- Keep option labels short (2-6 words), add descriptions only when needed
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -35,48 +36,108 @@ Rules:
 | **Need** — "What's still required" | → Identifies positioning gaps to address later |
 | **Say** — "Core message the name must carry" | → The seed of your Value Proposition |
 
-Ask the user to share their confirmed name, domain, and these four Diamond answers. Then jump straight to Round 2 (Competitive Landscape).
+Ask the user which name candidate to use as working name (or default to the highest-scoring one), note domain options, and carry forward the four Diamond answers. Then jump straight to Round 2 (Competitive Landscape).
 
 ### Round 1 — The Basics
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "What stage are you at?"
-- Options: Idea / MVP / Growth / Rebrand
+**Q1:**
+- question: "What stage are you at?"
+- header: "Stage"
+- multiSelect: false
+- options:
+  - { label: "Idea / pre-MVP", description: "Building the concept, no product yet" }
+  - { label: "MVP / early", description: "Have a working product, early users" }
+  - { label: "Growth / scaling", description: "Product-market fit, growing the business" }
+  - { label: "Rebrand", description: "Existing brand, repositioning or refreshing" }
 
-**Q2** (multi_select): "Who is your primary audience?"
-- Options: Developers / Enterprise buyers / Consumers / Creators / SMB owners / Internal teams
+**Q2:**
+- question: "Who is your primary audience?"
+- header: "Audience"
+- multiSelect: true
+- options:
+  - { label: "Developers", description: "Engineers, DevOps, technical builders" }
+  - { label: "Enterprise buyers", description: "B2B decision-makers, CTOs, procurement" }
+  - { label: "Consumers", description: "General public, individuals, end users" }
+  - { label: "Creators / SMBs", description: "Designers, founders, small business owners" }
 
-**Q3** (single_select): "Describe your product/service?"
-- Options: "I'll type it next" / "Skip for now"
+**Q3:**
+- question: "Describe your product/service?"
+- header: "Description"
+- multiSelect: false
+- options:
+  - { label: "I'll type it next", description: "I'll describe the product and problem it solves" }
+  - { label: "Skip for now", description: "Proceed without a description" }
 
 Then let user type their description + what problem they solve.
 
 ### Round 2 — Competitive Landscape
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "How crowded is your market?"
-- Options: Very crowded (10+ competitors) / Moderately crowded (3-9) / Emerging (1-2 direct) / Creating a new category
+**Q1:**
+- question: "How crowded is your market?"
+- header: "Competition"
+- multiSelect: false
+- options:
+  - { label: "Very crowded", description: "10+ competitors — need sharp differentiation" }
+  - { label: "Moderately crowded", description: "3-9 competitors — room to carve a position" }
+  - { label: "Emerging market", description: "1-2 direct competitors — category still forming" }
+  - { label: "Creating new category", description: "No direct competitors — educating the market" }
 
-**Q2** (multi_select): "What's your real advantage over competitors?"
-- Options: Better technology / Better UX / Cheaper / Faster / More trusted / Better support / Niche focus / First mover
+**Q2:**
+- question: "What's your real advantage over competitors?"
+- header: "Advantage"
+- multiSelect: true
+- options:
+  - { label: "Better technology", description: "Superior tech that competitors can't match" }
+  - { label: "Better UX", description: "Significantly easier or more delightful to use" }
+  - { label: "Niche focus", description: "Serving a specific segment better than any generalist — also: Cheaper/Faster via 'Other'" }
+  - { label: "First mover", description: "Early in the market — or most trusted, better support via 'Other'" }
 
-**Q3** (single_select): "Can you name your top 3 competitors?"
-- Options: "Yes, I'll list them next" / "Not sure yet" / "No direct competitors"
+**Q3:**
+- question: "Can you name your top 3 competitors?"
+- header: "Competitors"
+- multiSelect: false
+- options:
+  - { label: "Yes, I'll list them", description: "I'll name them in the next message" }
+  - { label: "Not sure yet", description: "I know they exist but haven't researched them yet" }
+  - { label: "No direct competitors", description: "Creating a new category or no obvious alternatives" }
 
 ### Round 3 — Aspiration
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "In 3 years, what do people say about your brand?"
-- Options: "The standard in our category" / "The most innovative" / "The most trusted" / "The easiest to use" / "The one for serious professionals" / Other
+**Q1:**
+- question: "In 3 years, what do people say about your brand?"
+- header: "Aspiration"
+- multiSelect: false
+- options:
+  - { label: "The category standard", description: "'The Stripe of X' — the default everyone references" }
+  - { label: "The most trusted", description: "Recognized as the most reliable, secure option" }
+  - { label: "The easiest to use", description: "Best DX / UX in the category, frictionless" }
+  - { label: "For serious pros", description: "The preferred tool of experts — or 'most innovative' via 'Other'" }
 
-**Q2** (multi_select): "Brands you admire (any industry)?"
-- Options: Stripe / Apple / Linear / Notion / Airbnb / Nike / Vercel / Tesla / Other (type next)
+**Q2:**
+- question: "Brands you admire (any industry)?"
+- header: "Admire"
+- multiSelect: true
+- options:
+  - { label: "Stripe / Linear", description: "Developer-first, precise, beautiful infrastructure" }
+  - { label: "Apple / Notion", description: "Premium, minimal, design-led" }
+  - { label: "Vercel / Figma", description: "Modern SaaS, fast, developer & creator focused" }
+  - { label: "Other", description: "Type any brand(s) in the next message" }
 
-**Q3** (multi_select): "Your brand should NOT feel like:"
-- Options: Corporate / Cheap / Overly techy / Generic / Playful / Cold / Trendy
+**Q3:**
+- question: "Your brand should NOT feel like:"
+- header: "Avoid feel"
+- multiSelect: true
+- options:
+  - { label: "Corporate / cold", description: "Stiff, formal, enterprise-jargon heavy" }
+  - { label: "Cheap / generic", description: "Low-quality, forgettable, template-looking" }
+  - { label: "Overly techy", description: "Too nerdy, insider jargon, intimidating to non-engineers" }
+  - { label: "Playful / trendy", description: "Too casual, cute, or chasing current trends" }
 
 ---
 

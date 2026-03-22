@@ -5,7 +5,7 @@
 > ① Naming → ② Positioning → `③ Voice & Messaging` → ④ Visual Identity → ⑤ SEO Content
 >
 > **Prerequisite**: Run `brand-positioning` first — positioning is the strategic foundation that voice is built on. If the user hasn't done positioning, do a lightweight version in the discovery phase.
-> **Input from previous steps**: Brand name, positioning statement, value proposition, target customer profile.
+> **Input from previous steps**: Brand name (working or confirmed), positioning statement, value proposition, target customer profile.
 > **What this step produces**: Mission/Vision/Values, brand pillars, messaging hierarchy (tagline → one-liner → pitch → boilerplate), voice & tone guidelines, word bank.
 > **After this skill**: Run `brand-visual` to define how the brand looks.
 
@@ -13,15 +13,16 @@ A structured framework for defining how a brand speaks, from internal messaging 
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices, not plain text questions.
 
-Rules:
-- Group related questions into one tool call (max 3 questions per call)
-- Use `single_select` for questions with one answer
-- Use `multi_select` for questions where multiple options apply
-- Use `rank_priorities` when the user needs to prioritize
-- Only fall back to prose questions when truly open-ended
-- Keep option labels short (2-6 words)
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -31,42 +32,104 @@ Rules:
 
 ### Round 1 — Brand Context
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "Do you already have a positioning statement?"
-- Options: Yes, I'll share it / No, help me figure it out / Sort of, needs refinement
+**Q1:**
+- question: "Do you already have a positioning statement?"
+- header: "Positioning"
+- multiSelect: false
+- options:
+  - { label: "Yes, I'll share it", description: "I have a positioning statement — I'll paste it next" }
+  - { label: "Needs refinement", description: "I have something rough but it's not solid yet" }
+  - { label: "No, help me", description: "I haven't done positioning yet — let's figure it out" }
 
-**Q2** (multi_select): "Who is your audience?"
-- Options: Developers / Enterprise buyers / Consumers / Creators / Investors / Mixed
+**Q2:**
+- question: "Who is your primary audience?"
+- header: "Audience"
+- multiSelect: true
+- options:
+  - { label: "Developers", description: "Engineers, DevOps, technical builders" }
+  - { label: "Enterprise buyers", description: "B2B decision-makers, procurement, executives" }
+  - { label: "Consumers", description: "General public, individuals, end users" }
+  - { label: "Creators / mixed", description: "Designers, founders, indie builders — or mixed audience" }
 
-**Q3** (single_select): "What one thing should everyone remember about your brand?"
-- Options: We're the most trusted / We're the easiest to use / We're the most innovative / We're the fastest / We're the most affordable / I'll describe it next
+**Q3:**
+- question: "What one thing should everyone remember about your brand?"
+- header: "Core message"
+- multiSelect: false
+- options:
+  - { label: "Most trusted", description: "We're the safe, reliable, credible choice" }
+  - { label: "Easiest to use", description: "We make things simple, frictionless, delightful" }
+  - { label: "Most innovative", description: "We're at the frontier, ahead of the curve" }
+  - { label: "I'll describe it", description: "None of these fit — I'll explain in my next message" }
 
 ### Round 2 — Voice Character
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (multi_select): "Pick 3-4 traits that FIT your brand voice:"
-- Options: Formal / Casual / Serious / Playful / Authoritative / Approachable / Technical / Simple / Bold / Understated / Warm / Cool
+**Q1:**
+- question: "Pick traits that FIT your brand voice:"
+- header: "Voice — fit"
+- multiSelect: true
+- options:
+  - { label: "Authoritative / Bold", description: "Confident, commanding, direct — also Formal/Serious via 'Other'" }
+  - { label: "Approachable / Warm", description: "Friendly, human, inviting — also Casual/Playful via 'Other'" }
+  - { label: "Technical / Precise", description: "Expert-level, accurate, engineer-respecting" }
+  - { label: "Simple / Understated", description: "Clear, clean, no noise — also Cool/Minimal via 'Other'" }
 
-**Q2** (multi_select): "Pick 2-3 traits that DON'T fit:"
-- Options: Formal / Casual / Serious / Playful / Authoritative / Approachable / Technical / Simple / Bold / Understated / Warm / Cool
+**Q2:**
+- question: "Pick traits that DON'T fit:"
+- header: "Voice — avoid"
+- multiSelect: true
+- options:
+  - { label: "Authoritative / Bold", description: "Too commanding, cold, or aggressive" }
+  - { label: "Approachable / Warm", description: "Too casual, friendly, or unprofessional" }
+  - { label: "Technical / Precise", description: "Too nerdy, jargon-heavy, or intimidating" }
+  - { label: "Simple / Understated", description: "Too plain, boring, or lacking personality" }
 
-**Q3** (single_select): "If your brand were a person at a dinner party, they'd be:"
-- Options: The trusted advisor everyone listens to / The witty friend who makes things fun / The quiet expert who speaks only when it matters / The enthusiastic visionary who inspires
+**Q3:**
+- question: "If your brand were a person at a dinner party, they'd be:"
+- header: "Personality"
+- multiSelect: false
+- options:
+  - { label: "The trusted advisor", description: "Everyone listens — authoritative, calm, never shows off" }
+  - { label: "The witty friend", description: "Makes things fun — clever, light, keeps energy up" }
+  - { label: "The quiet expert", description: "Speaks only when it matters — every word carries weight" }
+  - { label: "The enthusiastic visionary", description: "Inspires the whole table — passionate, forward-looking" }
 
 ### Round 3 — Messaging Boundaries
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (multi_select): "Words or vibes you WANT associated with the brand:"
-- Options: Empower / Seamless / Infrastructure / Secure / Fast / Simple / Premium / Open / Innovative / Reliable
+**Q1:**
+- question: "Words or vibes you WANT associated with the brand:"
+- header: "Word — want"
+- multiSelect: true
+- options:
+  - { label: "Reliable / Secure", description: "Trust, infrastructure, safety, stability" }
+  - { label: "Fast / Seamless", description: "Speed, flow, frictionless, effortless" }
+  - { label: "Simple / Open", description: "Clarity, transparency, accessible, minimal" }
+  - { label: "Premium / Innovative", description: "High-end, cutting-edge, forward-looking" }
 
-**Q2** (multi_select): "Words or vibes to AVOID:"
-- Options: Disruption / Revolutionary / Synergy / Leverage / AI-powered / Blockchain / Cheap / Basic / Enterprise-grade
+**Q2:**
+- question: "Words or vibes to AVOID:"
+- header: "Word — avoid"
+- multiSelect: true
+- options:
+  - { label: "Buzzword-heavy", description: "Disruption, revolutionary, synergy, leverage, AI-powered" }
+  - { label: "Hype / Trendy", description: "Blockchain, web3, next-gen — feels like marketing fluff" }
+  - { label: "Corporate jargon", description: "Enterprise-grade, scalable solutions, best-in-class" }
+  - { label: "Cheap / basic", description: "Anything that signals low quality or low ambition" }
 
-**Q3** (multi_select): "Brands whose VOICE you admire:"
-- Options: Stripe / Apple / Notion / Mailchimp / Linear / Vercel / Basecamp / Nike / Other (type next)
+**Q3:**
+- question: "Brands whose VOICE you admire:"
+- header: "Voice admire"
+- multiSelect: true
+- options:
+  - { label: "Stripe / Linear", description: "Direct, precise, developer-respecting — no fluff" }
+  - { label: "Apple / Notion", description: "Clean, aspirational, minimal copy, strong personality" }
+  - { label: "Mailchimp / Basecamp", description: "Human, opinionated, warm, occasionally witty" }
+  - { label: "Other", description: "Type your reference brand(s) in the next message" }
 
 ---
 

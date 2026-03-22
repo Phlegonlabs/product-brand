@@ -5,7 +5,7 @@
 > ① Naming → ② Positioning → ③ Voice & Messaging → ④ Visual Identity → `⑤ SEO Content`
 >
 > **Prerequisite**: Ideally run all 4 previous steps. At minimum, you need: brand name, positioning statement, brand voice guidelines. Can work standalone if the user just needs SEO help.
-> **Input from previous steps**: Brand name + domain, positioning statement, value proposition, voice & tone guidelines, target audience.
+> **Input from previous steps**: Brand name (working or confirmed) + domain options, positioning statement, value proposition, voice & tone guidelines, target audience.
 > **What this step produces**: Topic clusters, keyword plan, content calendar, SEO-optimized articles, GEO optimization, technical SEO checklist.
 > **This is the final step.** After completing all 5 skills, the user has a full brand foundation + content engine.
 
@@ -13,14 +13,16 @@ A structured framework for building content that ranks in both traditional searc
 
 ### Tool Usage Rule
 
-**ALWAYS use the `ask_user_input` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices.
+**ALWAYS use the `AskUserQuestion` tool for all questions throughout this skill.** Every round of questions should be presented as interactive clickable choices.
 
-Rules:
-- Group related questions into one tool call (max 3 questions per call)
-- Use `single_select` for questions with one answer
-- Use `multi_select` for questions where multiple options apply
-- Use `rank_priorities` when the user needs to prioritize
-- Only fall back to prose for truly open-ended questions
+Rules for `AskUserQuestion`:
+- 1-4 questions per call
+- 2-4 options per question (users can always select "Other" for custom input)
+- Each option needs a short `label` (1-5 words) and a `description`
+- Each question needs a `header` tag (max 12 chars)
+- Use `multiSelect: true` when multiple answers apply
+- Use `multiSelect: false` for single-choice questions
+- No `rank_priorities` — use multi-select + ask to prioritize in follow-up if needed
 
 ---
 
@@ -30,42 +32,104 @@ Rules:
 
 ### Round 1 — Business Context
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "What's your primary SEO goal?"
-- Options: Drive traffic to website / Generate leads / Build thought leadership / Rank for product keywords / Get cited by AI search / All of the above
+**Q1:**
+- question: "What's your primary SEO goal?"
+- header: "SEO goal"
+- multiSelect: false
+- options:
+  - { label: "Drive organic traffic", description: "Get more visitors from Google search" }
+  - { label: "Generate leads", description: "Convert search visitors into signups or demos" }
+  - { label: "Rank for brand keywords", description: "Own search results for your product name and category" }
+  - { label: "AI search citations", description: "Get cited by ChatGPT, Perplexity, Google SGE — also thought leadership via 'Other'" }
 
-**Q2** (single_select): "What stage is your content at?"
-- Options: Starting from zero / Have some content, need strategy / Have lots of content, need optimization / Rebuilding after rebrand
+**Q2:**
+- question: "What stage is your content at?"
+- header: "Content stage"
+- multiSelect: false
+- options:
+  - { label: "Starting from zero", description: "No content, no strategy — building from scratch" }
+  - { label: "Some content, need strategy", description: "Have scattered content, need structure and direction" }
+  - { label: "Lots of content, need optimization", description: "Content exists but isn't performing — needs refresh" }
+  - { label: "Rebuilding after rebrand", description: "Existing content needs to be realigned with new brand" }
 
-**Q3** (multi_select): "Who is your target reader?"
-- Options: Developers / Startup founders / Enterprise buyers / Consumers / Investors / General tech audience
+**Q3:**
+- question: "Who is your target reader?"
+- header: "Reader"
+- multiSelect: true
+- options:
+  - { label: "Developers", description: "Engineers, DevOps, technical builders" }
+  - { label: "Founders / startups", description: "Early-stage builders, solo founders, small teams" }
+  - { label: "Enterprise buyers", description: "Decision-makers, procurement, executives" }
+  - { label: "Consumers / general", description: "General public or broad tech audience" }
 
 ### Round 2 — Content Context
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "What type of content do you need right now?"
-- Options: Blog posts / Landing pages / Pillar page + topic cluster / Product documentation / Comparison pages / Full content strategy
+**Q1:**
+- question: "What type of content do you need right now?"
+- header: "Content type"
+- multiSelect: false
+- options:
+  - { label: "Full content strategy", description: "Topic clusters, keyword plan, content calendar — the full picture" }
+  - { label: "Blog posts", description: "Individual articles targeting specific keywords" }
+  - { label: "Pillar + cluster", description: "One comprehensive guide + supporting articles around a topic" }
+  - { label: "Comparison pages", description: "'X vs Y' or 'X alternatives' pages — high commercial intent" }
 
-**Q2** (single_select): "How often can you publish?"
-- Options: Daily / 2-3x per week / Weekly / Biweekly / Monthly / Not sure yet
+**Q2:**
+- question: "How often can you publish?"
+- header: "Publish cadence"
+- multiSelect: false
+- options:
+  - { label: "Weekly", description: "1 piece per week — sustainable for most teams" }
+  - { label: "2-3x per week", description: "Aggressive growth mode — strong output" }
+  - { label: "Monthly", description: "Focus on quality over quantity — 1 deep piece" }
+  - { label: "Not sure yet", description: "Help me figure out the right cadence" }
 
-**Q3** (multi_select): "Which search surfaces matter to you?"
-- Options: Google organic / Google AI Overviews / ChatGPT / Perplexity / YouTube / Twitter/X search / All of them
+**Q3:**
+- question: "Which search surfaces matter to you?"
+- header": "Search surface"
+- multiSelect: true
+- options:
+  - { label: "Google organic", description: "Traditional search results — the foundation" }
+  - { label: "AI search (GEO)", description: "ChatGPT, Perplexity, Google AI Overviews — growing fast" }
+  - { label: "YouTube", description: "Video content that also drives search traffic" }
+  - { label: "All of them", description: "Optimize for every surface — full coverage approach" }
 
 ### Round 3 — Competitive & Keyword Context
 
-Present as one `ask_user_input` call:
+Call `AskUserQuestion` with 3 questions:
 
-**Q1** (single_select): "Do you have existing keyword research?"
-- Options: Yes, I'll share it / No, need help from scratch / Have some ideas but nothing formal
+**Q1:**
+- question: "Do you have existing keyword research?"
+- header: "Keywords"
+- multiSelect: false
+- options:
+  - { label: "Yes, I'll share it", description: "I have a keyword list — I'll paste it in the next message" }
+  - { label: "Some ideas, nothing formal", description: "I know roughly what to target but haven't done proper research" }
+  - { label: "Starting from scratch", description: "No keyword research done yet — need to build from zero" }
 
-**Q2** (single_select): "What's your domain authority roughly?"
-- Options: Brand new domain (DA 0-10) / Early stage (DA 10-30) / Growing (DA 30-50) / Established (DA 50+) / Not sure
+**Q2:**
+- question: "What's your domain authority roughly?"
+- header: "Domain authority"
+- multiSelect: false
+- options:
+  - { label: "Brand new (DA 0-10)", description: "New domain — focus on low-difficulty, long-tail keywords" }
+  - { label: "Early stage (DA 10-30)", description: "Some traction — mix of long-tail and mid-difficulty" }
+  - { label: "Growing (DA 30-50)", description: "Established presence — can compete on higher-value terms" }
+  - { label: "Not sure", description: "I haven't checked — will look it up" }
 
-**Q3** (multi_select): "What SEO tools do you have access to?"
-- Options: Ahrefs / SEMrush / Google Search Console / Google Analytics / Surfer SEO / Clearscope / None, need free alternatives
+**Q3:**
+- question: "What SEO tools do you have access to?"
+- header: "SEO tools"
+- multiSelect: true
+- options:
+  - { label: "Ahrefs / SEMrush", description: "Paid keyword research and competitor analysis tools" }
+  - { label: "Google Search Console", description: "Free — see what queries bring traffic to your site" }
+  - { label: "Google Analytics 4", description: "Free — track traffic, user behavior, conversions" }
+  - { label: "None / free only", description: "No paid tools — use free alternatives like Ubersuggest, AlsoAsked" }
 
 ---
 
