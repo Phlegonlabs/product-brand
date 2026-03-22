@@ -274,16 +274,30 @@ Sound shapes perception. Every letter class below is equally viable — choose b
 | **Open vowels (O, A)** | Warm, broad, human | Consumer, global, horizontal | Canva, Notion, Asana, Okta |
 | **Soft clusters (Gl, Fl, Sl)** | Light, vision, motion | Creative, design, visual tools | Glide, Flow, Slate |
 
-**Diversity rule:** Across the ~20 shortlisted candidates, no more than 2–3 names should share the same starting letter, and no more than 2 names should share the same suffix pattern (e.g. -vel, -ix, -ra, -ex). If a cluster forms, replace with candidates from underrepresented letter classes.
+**Diversity rules — starting letters:** No more than 2–3 names in the ~20 shortlist should share the same starting letter.
+
+**Diversity rules — suffix families (CRITICAL):** Names cluster by suffix before they cluster by starting letter. Use the suffix family taxonomy below. **Hard cap: max 3 names per suffix family in the final ~20.** Target: at least 4 different suffix families represented.
+
+| Suffix Family | Endings | Emotional Register | Real Brand Examples |
+|---------------|---------|-------------------|---------------------|
+| **X-family** | -ex, -ox, -ix, -ax, -vex, -vox, -nox | Technical, futuristic, hard | Krenox, Narvex |
+| **Open Vowel** | -a, -ia, -io, -o, -ra, -va | Warm, global, approachable | Figma, Canva, Striva |
+| **Latin/Classical** | -um, -em, -us, -is, -al | Authoritative, precise | Vectum, Nexus, Corlem |
+| **Soft N** | -en, -on, -an, -ven, -von | Flowing, platform-like | Zolven, Notion, Lumen |
+| **R-ending** | -er, -ar, -or, -ur | Grounded, active, agent-like | Norvar, Render, Linear |
+| **Consonant Stop** | -ek, -ik, -el, -ol, -rl | Short, crisp, decisive | Slack, Strelv, Torvel |
+| **Compound / Real Word** | two real morphemes joined | Narrative, warm, memorable | BlackBerry, Windsurf |
+
+**Self-audit after generation:** After generating 60–100 candidates, tally the suffix family distribution across your strongest 20–30 picks. If any single family has more than 3 entries, replace the excess with new names from families with 0–1 entries. Do not shortlist until the distribution is balanced.
 
 ### Generation Methods
 
 | Method | How | Example |
 |--------|-----|---------|
-| **Root Mutation** | Compress/twist a concept root | measure→mezra, vector→vektro |
-| **Portmanteau** | Blend two uncommon roots | signal+forge→sigforq, trust+velocity→truveq |
-| **Consonant Cluster** | Add rare clusters to simple roots | flow→flokr, trust→truvk |
-| **Vowel Swap** | Replace expected vowels with unusual ones | cover→covyr, relay→reluq |
+| **Root Mutation** | Compress/twist a concept root | measure→mezura, vector→vektum, relay→relva |
+| **Portmanteau** | Blend two uncommon roots | signal+forge→sigora, trust+velocity→trelva, flow+nexus→flonex |
+| **Consonant Cluster** | Add rare clusters to simple roots | flow→flokr, trust→trelvis, core→corvix |
+| **Vowel Swap** | Replace expected vowels with unusual ones | cover→covira, relay→relua, forge→forgal |
 | **Collision Compound** | Join semantically unrelated but emotionally aligned words | Wind+Surf, Black+Berry, Power+Book |
 | **Classical Roots** | Greek/Latin roots create technical abstraction | lumen, nexus, vertex, axis |
 | **Cross-Language Blend** | Mix roots from 2+ languages | Latin lux + Japanese ki→lukzai |
@@ -339,6 +353,22 @@ uni + vel  → Univel
 - Carries layered semantic meaning that rewards discovery
 - Sounds natural and linguistic, not random or invented
 - Impossible to reverse-engineer the source words — maximum ownability
+
+### Suffix Audit (run before shortlisting)
+
+After generating all 60–100 candidates, tally the suffix family distribution across your 20–30 strongest picks using the table above. Example audit:
+
+```
+X-family (-ex/-ox/-vox/-nox):  8 names  ← over limit, must reduce to 3
+Open Vowel (-a/-ia/-o):         2 names
+Latin/Classical (-um/-us/-al):  1 name
+Soft N (-en/-on/-ven):          4 names  ← over limit, reduce to 3
+R-ending (-ar/-or/-er):         1 name
+Consonant Stop (-ek/-el):       1 name
+Compound/Real Word:             0 names  ← underrepresented, add 1-2
+```
+
+Replace excess names with new names from underrepresented families. Do NOT proceed to conflict pre-screening until at least 4 suffix families are represented and no family exceeds 3.
 
 ### Presenting the Candidate Set
 
