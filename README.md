@@ -1,7 +1,6 @@
 # brand-builder
 
 [![GitHub stars](https://img.shields.io/github/stars/Phlegonlabs/product-brand?style=flat-square)](https://github.com/Phlegonlabs/product-brand/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Phlegonlabs/product-brand?style=flat-square)](https://github.com/Phlegonlabs/product-brand/network)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 A complete, 5-step brand-building skill for Claude Code — from naming to SEO content.
