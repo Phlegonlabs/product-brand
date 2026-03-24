@@ -1,10 +1,11 @@
 ---
-name: product-branding
+name: brand-builder
+user-invokable: true
 description: >
   Complete product branding toolkit with 5 sequential modules: Naming, Positioning, Voice & Messaging, Visual Identity, and SEO Content. Use this skill for ANY branding-related request. Triggers include 'brand', 'branding', 'naming', 'name my company', 'brand name', 'product name', 'rename', 'rebrand', 'brand strategy', 'positioning', 'brand positioning', 'value proposition', 'brand voice', 'tagline', 'slogan', 'messaging', 'brand tone', 'visual identity', 'logo', 'color palette', 'brand design', 'typography', 'SEO', 'SEO content', 'content strategy', 'keyword research', 'blog post', '品牌', '命名', '取名', '品牌定位', '品牌策略', '標語', '品牌設計', 'SEO文章', or ANY request related to building, defining, or improving a brand. This is a comprehensive branding system — always start here for branding work.
 ---
 
-# Product Branding Toolkit
+# Brand Builder
 
 A complete, 5-step branding system that takes a company from zero to a fully defined brand with content strategy. Each step builds on the previous one.
 

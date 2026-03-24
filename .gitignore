@@ -1,0 +1,8 @@
+# Claude Code local files
+.claude/
+
+# Skill output folders (created per project when running the skill)
+# These are user-specific and should not be committed to this repo
+# Add your project folder names here, e.g.:
+# my-brand/
+# acme-2025/

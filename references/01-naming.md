@@ -176,10 +176,10 @@ Call `AskUserQuestion` with 3 questions:
 - header: "Domain"
 - multiSelect: true
 - options:
+  - { label: ".xyz preferred", description: "Modern, clean, highly available — primary default" }
   - { label: ".com preferred", description: "Strongest trust signal — will work hard to get it" }
-  - { label: ".ai is fine", description: "Good for AI-native companies, modern and accepted" }
   - { label: ".io is fine", description: "Developer-familiar, common for tools and platforms" }
-  - { label: "Any TLD works", description: "Including .co, .dev, .xyz — the name matters more" }
+  - { label: "Any TLD works", description: "Including .ai, .co, .dev — the name matters more" }
 
 Then ask as a follow-up prose question if needed: language requirements, length preference, any geographic or linguistic constraints.
 
@@ -394,9 +394,10 @@ After generating all 60–100 candidates across three perspectives, run a **Conf
 **Domain Pre-Check — run in the same silent pass as conflict pre-screening:**
 
 For each of the ~20 surviving candidates, run WebSearch to determine domain availability:
+- `"[name].xyz"` — if an active website appears, .xyz is TAKEN
 - `"[name].com"` — if an active website appears, .com is TAKEN
-- `"[name].ai"` — if an active website appears, .ai is TAKEN
 - `"[name].io"` — if an active website appears, .io is TAKEN
+- `"[name].sh"` — if an active website appears, .sh is TAKEN
 
 Interpret results:
 - Active company website in results → TAKEN
@@ -482,10 +483,10 @@ For each name that survives conflict screening, present a structured evidence bl
 **域名可用性：**
 | TLD | 状态 |
 |-----|------|
-| .com | ✅ Available / ❌ Taken |
-| .ai  | ✅ / ❌ |
+| .xyz | ✅ Available / ❌ Taken |
+| .com | ✅ / ❌ |
 | .io  | ✅ / ❌ |
-| .co  | ✅ / ❌ |
+| .sh  | ✅ / ❌ |
 
 **评分（/55）：**
 | 维度 | 分 | 理由 |
@@ -493,7 +494,7 @@ For each name that survives conflict screening, present a structured evidence bl
 | Memorability | 4 | [why] |
 | Pronounceability | 5 | [why] |
 | ... | ... | ... |
-| Domain Availability | 4 | .ai/.io/.co 可用，.com 监控中 |
+| Domain Availability | 4 | .xyz/.io 可用，.com 监控中 |
 | **Total** | **XX** | |
 ```
 
@@ -564,10 +565,10 @@ The user's selected names already have provisional scores from Phase 2. Now upda
 
 | Score | Condition |
 |-------|-----------|
-| 5 | .com available |
-| 4 | .ai + at least one other TLD (.io or .co) available |
-| 3 | .ai only available, OR .io + .co available (no .ai) |
-| 2 | Only one secondary TLD available (.io or .co) |
+| 5 | All four primary TLDs available (.xyz + .com + .io + .sh) |
+| 4 | Three of four primary TLDs available |
+| 3 | Two of four primary TLDs available |
+| 2 | One primary TLD or only secondary TLDs available (.ai, .co, .dev) |
 | 1 | Only fallback patterns available (get[name].com, use[name].com) |
 
 **Thresholds (out of 55):**
@@ -640,8 +641,8 @@ If conflict screening eliminates one of the 10, pull up the next scored candidat
 
 **准备好之后：**
 1. **48小时沉淀测试** — 把你最有感觉的名字反复念两天。好名字越念越对，越念越有感觉。
-2. **Cloudflare 手动验证** — 在 `dash.cloudflare.com/domains` 确认域名可用性（WebSearch 结果仅供参考，不是最终状态）
-3. **注册域名** — Cloudflare Registrar 以成本价注册
+2. **手动验证域名可用性** — `.xyz` / `.com` / `.io` 在 `dash.cloudflare.com/domains` 确认；`.sh` 域名 Cloudflare 不支持，请在 `namecheap.com` 或 `porkbun.com` 查询
+3. **注册域名** — `.xyz` / `.com` / `.io` 用 Cloudflare Registrar 以成本价注册；`.sh` 用 Namecheap 或 Porkbun（约 $29–40/yr）
 4. **商标咨询** — 10 个候选名都属于强商标类别（非描述性），建议在决策后尽早咨询
 
 **现在可以继续品牌定位：** 品牌定位是战略层工作，不依赖于最终名字。选任意一个候选名作为工作名称（working name），定位完成后再做最终命名决策。
@@ -654,7 +655,7 @@ If conflict screening eliminates one of the 10, pull up the next scored candidat
 
 | Tier | Method | Reliability |
 |------|--------|-------------|
-| 1 | WebSearch `"[name].com"` / `"[name].ai"` | Moderate — shows active sites |
+| 1 | WebSearch `"[name].com"` / `"[name].sh"` | Moderate — shows active sites |
 | 2 | User manual check on `dash.cloudflare.com/domains` | Ground truth |
 
 Domain availability is checked in Phase 2 via WebSearch during the pre-screen pass. **Do not run bash, Python, curl, or WHOIS commands.** If WebSearch results are inconclusive, ask the user to verify on Cloudflare.
@@ -680,7 +681,7 @@ Domain availability is checked in Phase 2 via WebSearch during the pre-screen pa
 | .co | ~$11.69/yr | Solid fallback |
 | .dev | ~$12.00/yr | Forces HTTPS; strong dev signal |
 | .xyz | ~$10.00/yr | Modern; no bait pricing on Cloudflare |
-| .sh | ~$5–10/yr | Short; dev-friendly |
+| .sh | ~$29–40/yr | **Not on Cloudflare** — use Namecheap or Porkbun |
 | .app | ~$14.00/yr | Forces HTTPS; consumer/mobile |
 | .tech | ~$4.47/yr | Budget-friendly tech signal |
 
@@ -690,12 +691,13 @@ Domain availability is checked in Phase 2 via WebSearch during the pre-screen pa
 
 | Priority | TLD | Best For |
 |----------|-----|----------|
-| 🥇 Tier 1 | **.com** | Universal default, strongest trust |
-| 🥇 Tier 1 | **.ai** | AI / ML companies |
-| 🥈 Tier 2 | **.io** | Developer tools |
+| 🥇 Tier 1 | **.xyz** | Primary default — modern, clean, high availability |
+| 🥇 Tier 1 | **.com** | Strongest trust signal |
+| 🥇 Tier 1 | **.io** | Developer tools, tech standard |
+| 🥇 Tier 1 | **.sh** | Short, dev-friendly, shell/script association |
+| 🥈 Tier 2 | **.ai** | AI / ML companies |
 | 🥈 Tier 2 | **.co** | Short fallback |
 | 🥈 Tier 2 | **.dev** | Developer-facing |
-| 🥈 Tier 2 | **.xyz** | Modern / experimental |
 | 🥉 Tier 3 | **.app** | Consumer / mobile |
 | 🥉 Tier 3 | **.so** | Short, modern |
 | 🥉 Tier 3 | **.tech** | Technology companies |
