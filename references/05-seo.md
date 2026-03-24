@@ -4,8 +4,8 @@
 > **Company Branding Workflow: Step ⑤ of 5**
 > ① Naming → ② Positioning → ③ Voice & Messaging → ④ Visual Identity → `⑤ SEO Content`
 >
-> **Prerequisite**: Ideally run all 4 previous steps. At minimum, you need: brand name, positioning statement, brand voice guidelines. Can work standalone if the user just needs SEO help.
-> **Input from previous steps**: Brand name (working or confirmed) + domain options, positioning statement, value proposition, voice & tone guidelines, target audience.
+> **Prerequisite**: Ideally the project folder contains outputs from previous steps (`01-naming.md` through `04-visual.md`). At minimum: positioning statement and brand voice guidelines. Can work standalone if the user just needs SEO help.
+> **Input from project files**: Read any existing module outputs from the project folder — name candidates, positioning statement, value proposition, voice & tone guidelines, target audience.
 > **What this step produces**: Topic clusters, keyword plan, content calendar, SEO-optimized articles, GEO optimization, technical SEO checklist.
 > **This is the final step.** After completing all 5 skills, the user has a full brand foundation + content engine.
 

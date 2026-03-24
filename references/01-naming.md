@@ -13,6 +13,8 @@ A structured, three-phase naming system built from Lexicon Branding methodology 
 
 Domain availability is handled in the Implement phase — it is a logistics problem, not a naming problem. The right name matters far more than the exact .com. As Lexicon's David Placek puts it: "A domain is just an area code." Domain conflicts can always be resolved through prefixes, alternative extensions, or purchases at modest cost. Never sacrifice a great name for a mediocre one because of domain anxiety.
 
+**The "Surprisingly Familiar" Principle:** Placek's defining insight: "The brain is lazy. It likes the familiar." The best names are "surprising, but surprisingly familiar" — they use familiar linguistic components (common morphemes, recognizable sound patterns, real-language roots) assembled in an unfamiliar configuration. This is why Lexicon's invented names sound natural rather than random: Vercel carries echoes of "versatile" and "excel" without being either. Pentium evokes "titanium" and "premium" without saying them. The brain processes these names faster because the components are already in its library, but the combination is new enough to be ownable. Every name this skill generates should pass the surprisingly-familiar test: novel enough to own, familiar enough to trust on first encounter.
+
 ## How This Skill Works
 
 The naming process has **3 phases**. Always follow them in order. Do NOT skip Phase 1 — the Identify phase is the foundation of everything.
@@ -187,11 +189,17 @@ Then ask as a follow-up prose question if needed: language requirements, length 
 
 ## Phase 2: Invent
 
+> "When you name something, you give it power." — The name is not a label; it is the foundational brand anchor. Naming initiates personality development for an enterprise. Everything that follows — positioning, voice, visual identity — flows from the name.
+
 **Goal:** Generate a large, diverse candidate set from multiple cognitive perspectives before any filtering begins. Quantity enables quality — the first 50 names are almost always the most generic. The breakthroughs emerge after volume.
 
 **Target: 60–100 candidates total.** Generate in three cognitive batches to maximize diversity.
 
 > **Key principle from Lexicon:** Separate generation from evaluation entirely. No judgment during generation. Generate first, judge later. Teams that evaluate while generating produce smaller, safer, more forgettable candidate sets.
+
+> **Multiple Exploration Cycles:** Lexicon repeats the generation process across different semantic territories over multiple periods. Single-session brainstorming produces "marginal results due to groupthink." If the first 60–100 candidates don't yield strong shortlist material, do not simply generate more of the same — shift to a completely different thematic territory (e.g., from "speed/precision" to "craft/artisanship" to "nature/organic") and run the three perspectives again. Each cycle should feel like a fresh start with different source concepts, not a continuation of the first. Two to three territory cycles typically surface breakthrough candidates that a single pass misses.
+
+> **Professional context:** Lexicon's naming engagements typically span 8 weeks with 10–12 people working on creative development and trademark research in parallel. This skill compresses that process into a structured conversation — the rigor is preserved, the timeline is accelerated.
 
 ### The Three Cognitive Perspectives
 
@@ -240,7 +248,7 @@ Pretend you're naming something in a completely different industry — luxury go
 | 13 | **Truncation / Clipping** | Clipped from a longer word or phrase | Intel, Cisco, FedEx, Amex | Moderate |
 | 14 | **Alphanumeric** | Contains numerals as part of the name | 3M, 1Password, 7-Eleven, 23andMe | Moderate |
 
-**Distribution target:** 70%+ should be Invented, Abstract, Compound, or **Morpheme-Engineered** types. These have the strongest trademark position and highest ownability.
+**Distribution target:** 70%+ should be Invented, Abstract, Compound, or **Morpheme-Engineered** types. These have the strongest trademark position and highest ownability. Counter-intuitively, invented names actually take less money to build into brands than existing words — they face no competition for meaning and generate more attention through unexpectedness.
 
 ### Semantic Lenses (guide root selection)
 
@@ -274,6 +282,18 @@ Sound shapes perception. Every letter class below is equally viable — choose b
 | **Open vowels (O, A)** | Warm, broad, human | Consumer, global, horizontal | Canva, Notion, Asana, Okta |
 | **Soft clusters (Gl, Fl, Sl)** | Light, vision, motion | Creative, design, visual tools | Glide, Flow, Slate |
 
+**Sound Balance — The Trust-Imagination Duality:**
+
+Every name must inspire both trust AND imagination simultaneously. Pure trust sounds (hard consonants, stable stops) feel reliable but boring. Pure imagination sounds (unusual clusters, exotic vowels) feel exciting but risky. The strongest Lexicon names blend both:
+
+- **Azure:** "zure" phonetically echoes "sure" — providing trust through sound — while "A-" and the "zh" create distinctiveness and imagination.
+- **Dasani:** Latin "san" (health/wellness) provides trust; crisp opening "da" and light "-i" ending create a fresh, imaginative sensory experience.
+- **BlackBerry:** Explosive "b" and "k" (dynamism, trust) paired with soft "berry" (organic, approachable) — the compound itself embodies the duality.
+
+**Practical rule:** After generating candidates, audit each for this balance. If a name sounds only reliable (too many hard stops, no flow), it will bore. If it sounds only creative (too many unusual clusters, no grounding), it will confuse. The sweet spot is when the listener feels both "I trust this" and "I'm curious about it" simultaneously.
+
+---
+
 **Diversity rules — starting letters:** No more than 2–3 names in the ~20 shortlist should share the same starting letter.
 
 **Diversity rules — suffix families (CRITICAL):** Names cluster by suffix before they cluster by starting letter. Use the suffix family taxonomy below. **Hard cap: max 3 names per suffix family in the final ~20.** Target: at least 4 different suffix families represented.
@@ -306,10 +326,20 @@ Sound shapes perception. Every letter class below is equally viable — choose b
 | **Syllable Splicing** | Extract specific syllables from words and reassemble | Spotify (spot+ify), Netflix (net+flix), Instagram (instant+telegram) |
 | **Letter Subtraction** | Remove letters (usually vowels) from an existing word | Flickr, Tumblr, Grindr, Scribd |
 | **Reduplication** | Repeat a syllable or sound pattern | TikTok, Lululemon, Bonbon, Murmur |
-| **Alliterative Construction** | Build a name with repeating initial consonants | Coca-Cola, PayPal, Best Buy, Krispy Kreme |
+| **Alliterative Construction** | Build a name with repeating initial consonants. Alliteration is one of the strongest memorability multipliers — the repeated sound creates a phonetic hook that dramatically increases recall in noise. | Coca-Cola, PayPal, Best Buy, Krispy Kreme, TikTok |
+| **Palindromic / Symmetric Construction** | Create names that read identically forwards and backwards, or whose visual/phonetic halves mirror each other. Symmetrical structures enhance visual distinctiveness and auditory memorability. | Sonos (palindrome — mirrors itself, evokes sound waves), Navan (palindrome — suggests forward movement), Kayak, Civic |
+| **Prefix/Suffix Matrix** | Define N prefixes and M suffixes from a semantic territory; systematically combine to generate N×M candidates. More rigorous than ad-hoc affixing — it exhausts a territory before moving on. | Lexicon generated 55 prefixes × 102 suffixes for Vercel → 60 candidates; repeated across 3 territories over 2 weeks |
 | **Prefix / Suffix Grafting** | Attach systematic affixes to a root | Uber-, Shopify (-ify), Bitly (-ly), Calendly |
 | **Truncation + Suffix** | Clip a word down to its root, then add a new ending | Accel(-a), Forgo(-io), Prism(-atic) |
 | **Phonestheme Mining** | Use sound clusters that carry consistent psychological meaning across many words | gl- (light/vision): Glow, Gleam, Glint — sn- (quick/sharp): Snap, Swift — str- (force): Stripe, Strong |
+
+> **The Prefix/Suffix Matrix — Lexicon's Volume Engine:**
+> For the Vercel project, Lexicon extracted 55 prefixes and 102 suffixes from speed/accuracy/reliability concepts across Greek, Latin, and Sanskrit — then systematically combined them to produce 60 candidates. They repeated the process three times over two weeks across different semantic territories, yielding hundreds of candidates from structured combination alone. To apply this method:
+> 1. Choose a semantic territory (e.g., "precision + speed")
+> 2. Extract 15–30 prefixes from concept words in that territory (e.g., ver-, vel-, ac-, cel-, str-, flo-, rel-)
+> 3. Extract 20–40 suffixes from concept words and classical roots (e.g., -el, -on, -ix, -a, -um, -is, -al, -en)
+> 4. Systematically test combinations — keep those that sound natural and pass the phone test
+> 5. If the first territory yields fewer than 15 strong candidates, shift to a new territory and repeat
 
 > **Real-world naming patterns** (use as generation prompts alongside the methods above):
 > 1. **Repurposed real word** — pick a word that metaphorically fits the outcome (Linear, Notion, Clerk, Render, Stripe)
@@ -525,7 +555,7 @@ Run conflict checks on ALL first-pass survivors **before scoring**. This saves t
 
 **Also check:** social handle availability on X (Twitter), LinkedIn, GitHub, Product Hunt for top survivors.
 
-If a target-language market is specified, check for profanity, negative connotations, or awkward sound-alikes.
+**Multilingual screening:** Lexicon analyzes name candidates across 20+ languages using a network of 250+ linguists — including languages less commonly checked such as Indonesian, Malay, Turkish, and Swahili. For this skill, apply a practical lightweight version: beyond the target market's primary languages, always check the name against Spanish, Portuguese, Arabic, Hindi, Mandarin, Japanese, and Korean. These cover the largest global populations where unintended meanings cause the most reputational damage. Flag any candidate where the name sounds like a common word with negative, vulgar, or comical meaning in any of these languages — not just exact matches, but phonetic similarity to sensitive words.
 
 ### Step 2: Domain Verification
 
@@ -645,7 +675,7 @@ If conflict screening eliminates one of the 10, pull up the next scored candidat
 3. **注册域名** — `.xyz` / `.com` / `.io` 用 Cloudflare Registrar 以成本价注册；`.sh` 用 Namecheap 或 Porkbun（约 $29–40/yr）
 4. **商标咨询** — 10 个候选名都属于强商标类别（非描述性），建议在决策后尽早咨询
 
-**现在可以继续品牌定位：** 品牌定位是战略层工作，不依赖于最终名字。选任意一个候选名作为工作名称（working name），定位完成后再做最终命名决策。
+**现在可以继续品牌定位：** 品牌定位是战略层工作，不依赖于最终名字。所有 10 个候选名将携带到后续步骤——不需要现在选定，随时可以在单独的会话中继续。
 
 ---
 
@@ -737,6 +767,7 @@ Always warn the user if candidates fall into these traps:
 - **Trust Before Cleverness**: The name should inspire trust and imagination, not just be clever.
 - **Resend's Criteria Filter**: Set explicit, measurable naming criteria before generating (e.g., .com available, <10 chars, product-connected, pronounceable) and filter against them ruthlessly. Named criteria beat gut feeling every time.
 - **The Placeholder Trap**: Temporary names become permanent faster than expected (Slack, Supabase, Stripe). If you're not ready to commit, avoid letting a placeholder gain traction.
+- **Name as First Growth Lever**: The name is "the cheapest ROI investment in the growth funnel." It works on Day 1 — seizing semantic territory before any marketing spend. Invented names require less money to build into brands than existing words because they generate more attention through unexpectedness and face no competition for meaning. A great name compounds in value from the moment it ships.
 
 ---
 
@@ -758,11 +789,13 @@ How great tech brands got their names — organized by naming approach.
 
 ### Coined / Morpheme-Engineered
 
-**Vercel** — Lexicon Branding was hired to rename Zeit (German for "time"), which struggled to attract investment. Lexicon ran morpheme engineering across five languages: "ver-" from versatile/accelerate, "-cel" from excel. "V" was chosen as the most vibrant consonant in English. Rebranded in April 2020, coinciding with a $21M Series A. *Takeaway: professional naming uses sound science, not just vibes. The rebrand unlocked investment.*
+**Vercel** — See full case study in Rebrand Case Studies below. *Takeaway: when a name blocks growth, renaming is a strategic investment, not vanity.*
 
 **Spotify** — Daniel Ek and Martin Lorentzon were shouting name ideas from different rooms. Ek misheard one as "Spotify," Googled it, found zero results, and registered the domain within minutes. Later rationalized as "spot + identify." *Takeaway: happy accidents work. The story doesn't need to come first.*
 
 **Figma** — From Latin "fingere" (to shape/mold). Short, pronounceable, high searchability, .com domain available. Classical root adds semantic depth without being obvious. *Takeaway: classical roots reward discovery — users find meaning in the name over time.*
+
+**Pentium** — Intel needed to escape from forgettable alphanumeric chip names (386, 486). Lexicon established a criterion: develop a name resembling fundamental elements of computing. The "-ium" suffix (evoking titanium, sodium, palladium) signaled elemental, foundational strength. When Lexicon presented the name, Intel's executive committee split — some wanted the safe "Pro Chip," others were drawn to the bold Pentium. CEO Andy Grove recognized the polarization itself as a strength signal: "I see the polarization here... that tells me there's energy for Pentium." Consumers began actively requesting Pentium computers by name within months. *Takeaway: the "-ium" suffix signals elemental power. When a leadership team is polarized on a name, that tension is a signal of strength, not a reason to retreat.*
 
 ### Compound / Portmanteau
 
@@ -770,7 +803,19 @@ How great tech brands got their names — organized by naming approach.
 
 **Supabase** — Paul Copplestone was brainstorming database names, tried "ultrabase" and "hyperbase" — nothing available. He put "supabase" as a placeholder joke inspired partly by Nicki Minaj's "Super Bass." After unexpectedly hitting #1 on Hacker News, they couldn't change it. *Takeaway: viral momentum locks in names. Even jokes become permanent once they gain traction.*
 
+**BlackBerry** — Lexicon's brief from RIM: the device name shouldn't stress or elevate blood pressure, but do the exact opposite — "calming, like fresh fruit, like a summer vacation." The team wrote words on butcher paper; someone wrote "strawberry," someone else wrote "blackberry." Lexicon rejected "Strawberry" as insufficiently vigorous for a business device. "BlackBerry" won because the explosive consonants "b" and "k" convey dynamism and decisiveness, while "berry" carries organic warmth and approachability — the compound embodies the trust-imagination duality: serious enough for enterprise, natural enough for everyday use. *Takeaway: sound psychology is not abstract — the specific phonetic choice directly shaped user perception of the product's personality.*
+
+**Swiffer** — Procter & Gamble hired Lexicon for what looked like an improved mop. Lexicon's research with 25 consumers revealed that mopping was universally hated — a dreaded chore. Rather than naming around "cleaning" (the function people despised), Lexicon reframed around the experience they wanted to create: "fun rather than function." They explored actions (sweeping, wiping, washing) and emotional associations with toys and vacation activities. "Swiffer" — light, fast, playful in sound — achieved 80% consumer preference in testing. *Takeaway: name the experience you want to create, not the task you're replacing. The brief should be about desired feeling, not product function.*
+
 **Canva** — During a team session, a French engineer noted that "canvas" is pronounced "canva" in French. The truncation became the final name. *Takeaway: cross-language pronunciation can reveal cleaner forms hidden inside familiar words.*
+
+---
+
+### Rebrand Case Studies
+
+**Navan (formerly TripActions)** — "TripActions" described the product accurately (travel + actions) but locked the company into travel. After expanding into expense management and corporate payments, the original name became a ceiling. Lexicon created "Navan" — a palindrome (reads the same forwards and backwards) that suggests forward movement while remaining completely category-flexible. The palindromic structure creates visual memorability and semantic openness. Revenue grew from $150M to $500M post-rebrand. *Takeaway: descriptive names become ceilings at the moment of expansion. Palindromic structure provides visual distinctiveness and infinite semantic flexibility.*
+
+**Vercel (formerly Zeit)** — Zeit (German for "time") struggled to attract English-speaking investment despite strong technical fundamentals. Lexicon ran morpheme engineering across five languages, building a matrix of 55 prefixes and 102 suffixes from speed/accuracy/reliability concepts in Greek, Latin, and Sanskrit. They generated 60 candidates, evaluated them through sound-symbolism analysis to identify fast-sounding letters, then repeated the process across three different semantic territories over two weeks. The winning name, Vercel: six letters, "ver-" from versatile/veritas/accelerate, "-cel" from excel/accelerate. "V" was chosen as the most vibrant consonant in English. "Surprising, but surprisingly familiar." The rebrand coincided with a $21M Series A in April 2020. *Takeaway: professional naming uses systematic methodology (prefix/suffix matrices, multi-territory cycles, sound science) — not vibes. The right name unlocks investment.*
 
 ---
 
@@ -786,6 +831,18 @@ How great tech brands got their names — organized by naming approach.
 | Fintech | Short, credible, precise, alphanumeric |
 | Creative tool | Abstract, soft, elegant |
 | Agent / assistant | Personification, human, warm, memorable |
+
+---
+
+### AI Naming — Lexicon Principles
+
+Placek has specific guidance for naming AI ventures, developed through extensive research across nine countries:
+
+- **Avoid anthropomorphic language for corporate AI products.** Names that sound too human overpromise — they set expectations of human-level understanding and create backlash when the product falls short. Reserve personification names (Alexa, Siri) for consumer assistants where personality is the product.
+- **Blend hardness and softness.** AI names must convey "technology's reliability while remaining approachable." Pure-tech names (GPT, anything-LLM) feel harsh and clinical. Pure-soft names feel unserious for enterprise. Target the register of "Lexus" — technological trustworthiness fused with user-friendliness.
+- **Corporate AI names need flexibility.** If the AI product will spawn multiple sub-products or features, the parent name must be abstract enough to serve as an umbrella. Names that lock into a single capability ("ChattingAI", "CodeHelper") become ceilings.
+- **Product-level AI names can be more playful.** A specific AI feature or consumer-facing assistant has more latitude for warmth, personality, and even whimsy than the corporate brand.
+- **Sound balance is critical for AI.** Lexicon's research across nine countries identified that "V" universally signals "aliveness, movement, vitality" — making it a strong choice for AI products that need to feel dynamic (Vercel, Vertex, Vivid). Hard stops (K, T, B) add trustworthiness. Soft clusters (Sl, Fl, L) add approachability. An AI corporate brand should have at least one of each register.
 
 ---
 

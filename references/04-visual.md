@@ -30,7 +30,7 @@ Rules for `AskUserQuestion`:
 
 ## Phase 1: Discovery Interview
 
-**If the user just completed `brand-voice`**: Ask them to share their brand name, positioning statement, voice adjectives (3-4), and brand pillars. Use these as input — don't re-ask what's already been answered. You can skip Round 1 and go straight to Round 2 (Visual Taste).
+**If the project folder contains previous module outputs** (`02-positioning.md`, `03-voice.md`): Read them and extract name candidates, positioning statement, voice adjectives (3-4), and brand pillars. Use these as input — don't re-ask what's already been answered. You can skip Round 1 and go straight to Round 2 (Visual Taste).
 
 ### Round 1 — Brand Context
 

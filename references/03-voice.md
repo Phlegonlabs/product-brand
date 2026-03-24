@@ -28,7 +28,7 @@ Rules for `AskUserQuestion`:
 
 ## Phase 1: Discovery Interview
 
-**If the user just completed `brand-positioning`**: Ask them to share their positioning statement, value proposition, and target customer profile. Use these as input — don't re-ask what's already been answered. You can skip straight to Round 2 (Voice Character).
+**If the project folder contains `02-positioning.md`**: Read it and extract the positioning statement, value proposition, and target customer profile. Use these as input — don't re-ask what's already been answered. You can skip straight to Round 2 (Voice Character).
 
 ### Round 1 — Brand Context
 

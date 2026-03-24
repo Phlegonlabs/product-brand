@@ -24,8 +24,11 @@ This methodology is designed for company names first, but it can be adapted for 
 |--------|-------------|
 | **David Placek / Lexicon Branding** | Generate 1,500–3,000 candidates before evaluating. Separate generation from evaluation. Use multiple cognitive teams. Domain is just an area code. |
 | **Lenny's Newsletter / Placek interview** | Great names feel slightly wrong at first. The competitor test beats direct preference questions. Letter psychology shapes perception across cultures. |
-| **Vercel case study (Zeit → Vercel)** | "V" chosen deliberately for vibrancy. Roots from versatile + accelerate + excel. Name must work as a developer command. |
+| **Vercel case study (Zeit → Vercel)** | "V" chosen deliberately for vibrancy. Roots from versatile + accelerate + excel. 55 prefixes × 102 suffixes matrix, 3 territory cycles over 2 weeks. Rebrand coincided with $21M Series A. |
 | **Paul Graham** | The .com still matters disproportionately for serious companies — but it's a logistics problem, not a naming blocker. |
+| **BlackBerry case study** | "Name shouldn't elevate blood pressure — like fresh fruit." Explosive b/k consonants convey dynamism; soft "berry" provides approachability. Rejected "Strawberry" as insufficiently vigorous. Sound psychology directly shapes product perception. |
+| **Swiffer / Pentium case studies** | Swiffer: researched 25 consumers, reframed "hated chore" into "fun rather than function." 80% preference. Pentium: "-ium" for elemental strength (titanium, sodium). CEO Grove's polarization signal = name has energy. |
+| **Navan case study (TripActions rebrand)** | Descriptive names become ceilings at expansion. Palindromic "Navan" enabled category expansion beyond travel. Revenue $150M → $500M post-rebrand. |
 | **YC Batch Analysis** | Short names, abstract names, and .ai usage remain strong trends. |
 | **Trademark doctrine** | Fanciful and arbitrary names are strongest; descriptive names are weakest. |
 
@@ -196,9 +199,11 @@ Remove vowels to create a tighter mark.
 - `cluster → clstr`
 - `lumen → lmn`
 
-### 5. Prefix / Suffix Construction
-- Prefixes: `re-`, `omni-`, `hyper-`, `meta-`, `neo-`
-- Suffixes: `-ly`, `-fy`, `-io`, `-lab`, `-base`, `-grid`, `-OS`
+### 5. Prefix / Suffix Matrix
+Move beyond ad-hoc affixing to systematic combination. Define N prefixes and M suffixes from a semantic territory, then test all N×M combinations. This is how Lexicon generates volume without losing intentionality.
+- Example prefixes: `re-`, `omni-`, `hyper-`, `meta-`, `neo-`, `ver-`, `vel-`, `ac-`, `str-`, `cel-`, `rel-`
+- Example suffixes: `-ly`, `-fy`, `-io`, `-lab`, `-base`, `-grid`, `-el`, `-on`, `-ix`, `-um`, `-a`, `-en`
+- **Lexicon's Vercel process:** 55 prefixes × 102 suffixes drawn from speed/reliability concepts in Greek, Latin, and Sanskrit → 60 candidates. Repeated across 3 semantic territories over 2 weeks before a winner emerged.
 
 ### 6. Phonetic Shift
 Adjust spelling while preserving sound.
@@ -223,6 +228,13 @@ Use repeatable phonetic templates:
 - `CCVCV` → Stripe-adjacent rhythm
 - `CVRA` / `VRA` / `LVO` style stems for invented words
 
+### 11. Palindromic / Symmetric Construction
+Create names that read identically forwards and backwards, or whose visual/phonetic halves mirror each other. Symmetrical structures enhance both visual distinctiveness and auditory memorability.
+- `Sonos` — palindrome; mirrors itself, evokes sound waves reverberating
+- `Navan` — palindrome; suggests forward movement, category-flexible
+- `Kayak` — palindrome; instantly memorable, travel-associated
+- `Civic` — palindrome; suggests community and reciprocity
+
 ---
 
 ## What Makes a Name Feel Strong
@@ -236,6 +248,7 @@ Strong names usually have most of these traits:
 - Not boxed into one narrow feature
 - Visually clean in a logo
 - Likely to pass conflict screening
+- Inspires both trust and imagination simultaneously — not just one
 
 Weak names usually fail in one of four ways:
 - Too generic
@@ -387,6 +400,14 @@ These lower priority but do not automatically kill a candidate:
 
 ## Expert Principles
 
+### The "Surprisingly Familiar" Principle
+Placek's core philosophy: "The brain is lazy. It likes the familiar." The best names are "surprising, but surprisingly familiar." They use familiar linguistic building blocks — real morphemes, common phonetic patterns, recognizable roots — assembled in a novel configuration. This is why Lexicon's invented names sound natural rather than random:
+- **Vercel** carries echoes of "versatile" and "excel" without being either
+- **Pentium** evokes "titanium" and "premium" without saying them
+- **Dasani** echoes "sanity," "san" (Latin: health), and "oasis" — all through sound, not spelling
+
+The brain processes these names faster because the components are already in its library, but the combination is new enough to be ownable and memorable. Test every candidate: does it feel *familiar* (so it can be trusted) while feeling *novel* (so it can be owned)?
+
 ### Placek's Discomfort Principle
 Great names often feel slightly wrong at first because they are unfamiliar, not because they are bad. Sonos was "not entertainment enough." Azure was "dumb." BlackBerry was "crazy." All became iconic.
 
@@ -427,8 +448,11 @@ A great name compounds in value for decades. Domain availability is a one-time l
 - Is the result page dominated by another brand?
 
 ### Layer 5: Linguistic Screening
-- Major target-market languages
+- Lexicon's standard: 20+ languages via a network of 250+ linguists
+- Major target-market languages (always check first)
+- Extended check: Spanish, Portuguese, Arabic, Hindi, Mandarin, Japanese, Korean, Indonesian, Malay, Turkish — these cover the largest global populations where unintended meanings cause the most damage
 - Slang, profanity, awkward sound-alikes
+- Phonetic similarity to sensitive words (not just exact matches)
 
 ### Rule
 - Early-stage screening can be lightweight
@@ -521,3 +545,19 @@ A great final name:
 - feels like it could grow into a large company
 
 That is the target standard for this naming system.
+
+---
+
+## When to Consider Renaming
+
+Not every company needs a new name. But some names become ceilings. These are the triggers:
+
+| Trigger | Signal | Example |
+|---------|--------|---------|
+| **Category expansion** | The name describes a product you've outgrown | TripActions → Navan (travel name, but now also expense + payments) |
+| **Investment readiness** | The name confuses or alienates target investors | Zeit → Vercel (German name, English-speaking investors couldn't connect) |
+| **International scaling** | The name doesn't travel across languages or cultures | Any name with negative meaning in target markets |
+| **Competitive repositioning** | The name sounds like a follower, not a leader | Descriptive names that blend into the category |
+| **Trademark conflict** | Legal pressure from a larger brand in the same space | Forced rename — better handled proactively |
+
+Renaming is a strategic investment, not vanity. Vercel's rebrand coincided with a $21M Series A. Navan's revenue grew from $150M to $500M post-rebrand. When a name blocks growth, changing it is often the highest-ROI brand decision available.

@@ -4,7 +4,7 @@
 > **Company Branding Workflow: Step ② of 5**
 > ① Naming → `② Positioning` → ③ Voice & Messaging → ④ Visual Identity → ⑤ SEO Content
 >
-> **Prerequisite**: Run `brand-naming` first — you need at least a working name from the naming candidates. A final name decision is NOT required — positioning work transfers across candidates.
+> **Prerequisite**: Run `brand-naming` first — you need the naming candidates and Diamond Framework answers. A final name decision is NOT required — positioning work transfers across all candidates.
 > **What this step produces**: Positioning statement, value proposition, key differentiators, target customer profile, competitive map.
 > **After this skill**: Run `brand-voice` to turn positioning into messaging.
 
@@ -27,7 +27,7 @@ Rules for `AskUserQuestion`:
 
 ## Phase 1: Discovery Interview
 
-**If the user just completed `brand-naming`**: The Diamond Framework answers from naming (Win / Have / Need / Say) are direct positioning inputs — map them as follows and skip Round 1 entirely:
+**If the project folder contains `01-naming.md`**: Read it and extract the Diamond Framework answers (Win / Have / Need / Say) — these are direct positioning inputs. Map them as follows and skip Round 1 entirely:
 
 | Diamond Framework (from naming) | Positioning Use |
 |----------------------------------|----------------|
@@ -36,7 +36,7 @@ Rules for `AskUserQuestion`:
 | **Need** — "What's still required" | → Identifies positioning gaps to address later |
 | **Say** — "Core message the name must carry" | → The seed of your Value Proposition |
 
-Ask the user which name candidate to use as working name (or default to the highest-scoring one), note domain options, and carry forward the four Diamond answers. Then jump straight to Round 2 (Competitive Landscape).
+Carry forward ALL name candidates with their scores and conflict status — do not ask the user to choose a working name. The name decision is separate from positioning work. Use `[Brand]` as placeholder in positioning templates, or reference the full candidate list when relevant. Carry forward the four Diamond answers and jump straight to Round 2 (Competitive Landscape).
 
 ### Round 1 — The Basics
 
@@ -152,7 +152,7 @@ The most widely used startup positioning template (from Google/Square):
 ```
 For [target customer]
 who [statement of need or opportunity],
-[product name] is a [product category]
+[Brand] is a [product category]
 that [statement of key benefit].
 Unlike [competitive alternative],
 our product [statement of primary differentiation].

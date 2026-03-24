@@ -98,48 +98,43 @@ When the user makes a request, determine which module to load:
 
 ### Passing Context Between Steps
 
-When moving from one step to the next, carry forward ALL outputs from previous steps. Summarize them at the start of the next module:
+Each module is **independently runnable** — the user may run them in separate sessions days apart. Context is carried via the output files saved in the project folder, not via conversation memory.
+
+When starting any module, **first check the project folder** for existing output files:
+
+1. Scan for: `01-naming.md`, `02-positioning.md`, `03-voice.md`, `04-visual.md`
+2. Read any that exist and extract key outputs
+3. Summarize what's already available before starting the discovery interview:
 
 ```
-=== Context from Previous Steps ===
-Project Folder: [repo-root/project-name]
-Name Candidates: [top 10 registrable names from naming module, balanced ~5 real words + ~5 engineered]
-Working Name: [highest-scoring candidate, used as provisional name]
-Domain Options: [best available domain per candidate]
-Positioning: [positioning statement]
-Value Proposition: [one sentence]
-Target Customer: [description]
-Voice Traits: [3-4 adjectives]
-Brand Pillars: [list]
-Tagline: [if created]
-Color Palette: [if defined]
+=== Context from Project Files ===
+Project Folder: [path]
+Name Candidates: [from 01-naming.md, if exists]
+Working Name: [only if user has explicitly chosen one — otherwise use "[Brand]" as placeholder]
+Domain Options: [from 01-naming.md, if exists]
+Positioning: [from 02-positioning.md, if exists]
+Value Proposition: [from 02-positioning.md, if exists]
+Target Customer: [from 02-positioning.md, if exists]
+Voice Traits: [from 03-voice.md, if exists]
+Brand Pillars: [from 03-voice.md, if exists]
+Tagline: [from 03-voice.md, if exists]
+Color Palette: [from 04-visual.md, if exists]
 ===
 ```
 
-This prevents re-asking questions and ensures continuity.
+Skip any discovery questions whose answers are already in the project files.
 
 ### Transitioning Between Steps
 
 After completing each module:
 
-1. **Save the output file first** (before prompting the user):
-   - Write the complete module deliverables to `{Project Folder}/0X-module-name.md`
-   - File format: include a YAML frontmatter block with `project`, `module`, and `date` fields, followed by the full deliverable content
+1. **Save the output file** to `{Project Folder}/0X-module-name.md`
+   - Include YAML frontmatter with `project`, `module`, and `date` fields
    - Confirm to the user: "✅ Saved to `{project-name}/0X-module-name.md`"
 
-2. **Then prompt the user** with `AskUserQuestion`:
-
-   Call `AskUserQuestion` with:
-   - question: "Step [N] complete! Ready for the next step?"
-   - header: "Next step"
-   - multiSelect: false
-   - options:
-     - { label: "Yes, continue", description: "Proceed to [next step name]" }
-     - { label: "Revisit first", description: "Go back and adjust something in this step" }
-     - { label: "Done for today", description: "Save progress and pick up later" }
-
-If "revisit": ask what they want to change and loop back.
-If "enough for today": summarize what's been completed and what's remaining. Tell them they can come back and say "continue branding" to pick up where they left off.
+2. **Briefly note what's available next** — but do NOT prompt to continue:
+   - Example: "When you're ready, the next step is ② Positioning."
+   - The user decides when to run the next module. They may come back in a different session.
 
 ---
 
