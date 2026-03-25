@@ -378,6 +378,16 @@ After presenting the messaging framework to the user, save it to the project fol
 
 ## Workflow: Next Step
 
-After completing this skill, prompt the user:
+After saving the output file, call `AskUserQuestion`:
 
-> **Voice & messaging defined!** The next step is **visual identity** — defining your color palette, typography, and logo direction so your brand looks as good as it sounds. Want to start `brand-visual` now?
+**Q1:**
+- question: "Voice & messaging is saved! What do you want to work on next?"
+- header: "Next step"
+- multiSelect: false
+- options:
+  - { label: "④ Visual Identity", description: "Color palette, typography, and logo direction brief" }
+  - { label: "⑤ SEO Content", description: "Keyword research, content strategy, and GEO optimization" }
+  - { label: "① Naming", description: "Go back to naming — generate or refine name candidates" }
+  - { label: "Done for now", description: "I'll come back later — all progress is saved in the project folder" }
+
+Route to the selected module by reading the appropriate reference file. If "Done for now", confirm: "Your voice & messaging is saved in `{project-name}/03-voice.md`. Come back anytime to continue."

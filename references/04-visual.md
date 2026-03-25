@@ -471,6 +471,16 @@ After presenting the Visual Direction Document to the user, save it to the proje
 
 ## Workflow: Next Step
 
-After completing this skill, prompt the user:
+After saving the output file, call `AskUserQuestion`:
 
-> **Visual direction complete!** The final step is **SEO content strategy** — creating content that ranks in Google and gets cited by AI search engines, all aligned with your new brand identity. Want to start `seo-content` now?
+**Q1:**
+- question: "Visual identity is saved! What do you want to work on next?"
+- header: "Next step"
+- multiSelect: false
+- options:
+  - { label: "⑤ SEO Content", description: "Keyword research, content strategy, and GEO optimization" }
+  - { label: "① Naming", description: "Go back to naming — generate or refine name candidates" }
+  - { label: "② Positioning", description: "Revisit or refine your positioning and value prop" }
+  - { label: "Done for now", description: "I'll come back later — all progress is saved in the project folder" }
+
+Route to the selected module by reading the appropriate reference file. If "Done for now", confirm: "Your visual identity direction is saved in `{project-name}/04-visual.md`. Come back anytime to continue."

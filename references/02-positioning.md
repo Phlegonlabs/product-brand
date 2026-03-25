@@ -345,6 +345,16 @@ After presenting the deliverables to the user, save them to the project folder:
 
 ## Workflow: Next Step
 
-After completing this skill, prompt the user:
+After saving the output file, call `AskUserQuestion`:
 
-> **Positioning locked in!** The next step is **brand voice & messaging** — turning your positioning into taglines, elevator pitches, and voice guidelines that your team can use everywhere. Want to start `brand-voice` now?
+**Q1:**
+- question: "Positioning is saved! What do you want to work on next?"
+- header: "Next step"
+- multiSelect: false
+- options:
+  - { label: "③ Voice & Messaging", description: "Taglines, tone guidelines, and messaging hierarchy" }
+  - { label: "④ Visual Identity", description: "Color palette, typography, and logo direction brief" }
+  - { label: "⑤ SEO Content", description: "Keyword research, content strategy, and GEO optimization" }
+  - { label: "Done for now", description: "I'll come back later — all progress is saved in the project folder" }
+
+Route to the selected module by reading the appropriate reference file. If "Done for now", confirm: "Your positioning is saved in `{project-name}/02-positioning.md`. Come back anytime to continue."
