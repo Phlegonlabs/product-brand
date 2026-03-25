@@ -157,16 +157,16 @@ Project Folder: {project-name}/
 
 ### Passing Onboarding Context to Modules
 
-When routing to a module after onboarding, if a Discovery Interview question was already answered during onboarding, **pre-fill the answer and ask the user to confirm** rather than re-asking from scratch. Present it as: "Based on what you told me earlier, [pre-filled answer] — does that still apply?"
+When routing to a module after onboarding, the module will automatically use onboarding answers to skip redundant questions. This applies within the same session only. If the user returns in a new session, context is carried via the `## Discovery Inputs` section in each saved output file.
 
-Key overlaps to watch for:
-- **Naming Round 1 Q1** (what are we naming?) ← Project Type
-- **Naming Round 1 Q2** (who is the audience?) ← Audience
-- **Positioning Round 1 Q1** (what stage are you at?) ← Situation
-- **Positioning Round 1 Q2** (who is the audience?) ← Audience
-- **Positioning Round 1 Q3** (describe your product) ← Description
+| Onboarding Answer | Module Uses It To |
+|---|---|
+| **Project Type** (Turn 1 Q2) | Naming: skip Round 1 Q1, map to Target |
+| **Audience** (Turn 2 Q1) | Naming: skip Round 1 Q2; Positioning: skip Round 1 Q2 |
+| **Description** (Turn 3 Q2) | Naming: skip Round 1 Q3; Positioning: skip Round 1 Q3 |
+| **Situation** (Turn 1 Q1) | Positioning: skip Round 1 Q1, map to Stage |
 
-This only applies within the same session. If the user returns in a new session, the module's full Discovery Interview runs normally.
+**Naming specifically**: After onboarding, skip Round 1 entirely and start at Round 2 (Diamond Framework). The module file has explicit instructions for this.
 
 ---
 
@@ -231,16 +231,30 @@ When starting any module, **first check the project folder** for existing output
 ```
 === Context from Project Files ===
 Project Folder: [path]
-Name Candidates: [from 01-naming.md, if exists]
+
+--- From 01-naming.md (if exists) ---
+Name Candidates: [10 registrable candidates]
 Working Name: [only if user has explicitly chosen one — otherwise use "[Brand]" as placeholder]
-Domain Options: [from 01-naming.md, if exists]
-Positioning: [from 02-positioning.md, if exists]
-Value Proposition: [from 02-positioning.md, if exists]
-Target Customer: [from 02-positioning.md, if exists]
-Voice Traits: [from 03-voice.md, if exists]
-Brand Pillars: [from 03-voice.md, if exists]
-Tagline: [from 03-voice.md, if exists]
-Color Palette: [from 04-visual.md, if exists]
+Domain Options: [domain status for top candidates]
+Audience: [from Discovery Inputs]
+Description: [from Discovery Inputs]
+Diamond Win: [from Discovery Inputs]
+Diamond Have: [from Discovery Inputs]
+Diamond Say: [from Discovery Inputs]
+
+--- From 02-positioning.md (if exists) ---
+Positioning: [positioning statement]
+Value Proposition: [value prop]
+Target Customer: [target customer profile]
+
+--- From 03-voice.md (if exists) ---
+Voice Traits: [3-4 adjectives]
+Brand Pillars: [3-4 pillars]
+Tagline: [chosen tagline]
+
+--- From 04-visual.md (if exists) ---
+Color Palette: [primary, secondary colors with hex]
+Typography: [heading + body fonts]
 ===
 ```
 

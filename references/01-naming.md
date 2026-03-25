@@ -38,6 +38,13 @@ Rules for `AskUserQuestion`:
 
 **Goal:** Build a complete brief before generating anything. Quantity of candidates means nothing without a sharp brief. This is the Diamond Framework in action — define what winning looks like before inventing anything.
 
+**If onboarding was completed in this session**: The user already answered Target, Audience, and Description during onboarding. Skip Round 1 entirely and start at Round 2 (Diamond Framework). Use the onboarding answers:
+- Map Project Type → Target: "Software / SaaS" or "Consumer product" → "Product"; "Agency / consulting" → "Company"
+- Audience → carried directly
+- Description → carried directly
+
+If no onboarding context is available (user jumped directly to naming or returned in a new session), ask Round 1 normally.
+
 ### Round 1 — Project Basics
 
 Call `AskUserQuestion` with 3 questions:
@@ -125,13 +132,13 @@ Then follow up with `AskUserQuestion` for the Say vertex:
   - { label: "Innovation", description: "Forward-looking, cutting-edge, first-of-its-kind" }
   - { label: "Simplicity & clarity", description: "Easy, calm, minimal — or 'Power & scale' via 'Other'" }
 
-### Round 3 — Tone & Style
+### Round 3 — Style & Constraints
 
-Call `AskUserQuestion` with 2 questions:
+Call `AskUserQuestion` with 3 questions:
 
 **Q1:**
 - question: "Pick 1-2 style directions that fit your brand:"
-- header: "Style — want"
+- header: "Style"
 - multiSelect: true
 - options:
   - { label: "Short & Punchy", description: "4-6 letters, hard consonants, instant recall (e.g., Stripe, Snap)" }
@@ -140,38 +147,14 @@ Call `AskUserQuestion` with 2 questions:
   - { label: "Human / Playful", description: "Warm, approachable, consumer-friendly — or Premium/Mythic via 'Other'" }
 
 **Q2:**
-- question: "Which styles do you NOT want?"
-- header: "Style — avoid"
-- multiSelect: true
-- options:
-  - { label: "Short & Punchy", description: "Avoid very short, hard-sounding names" }
-  - { label: "Abstract / Minimal", description: "Avoid names that feel too vague or cold" }
-  - { label: "Technical", description: "Avoid names that feel too nerdy or niche" }
-  - { label: "Human / Playful", description: "Avoid names that feel too casual, cute, or consumer-focused" }
-
-### Round 4 — Constraints
-
-Call `AskUserQuestion` with 3 questions:
-
-**Q1:**
 - question: "Any themes to AVOID in the name?"
-- header: "Avoid themes"
+- header: "Avoid"
 - multiSelect: true
 - options:
   - { label: "AI/GPT trend words", description: "No 'AI', 'GPT', 'neural', 'smart' — dates badly" }
   - { label: "Too-literal words", description: "Avoid function-first names like Pay, Wallet, Send, Auth" }
   - { label: "Crypto/web3 vibes", description: "No chain, block, token, mint — even if unintentional" }
   - { label: "No restrictions", description: "Open to any direction — let the brief lead" }
-
-**Q2:**
-- question: "Any themes you're drawn to?"
-- header: "Draw to"
-- multiSelect: true
-- options:
-  - { label: "Trust & safety", description: "Names that feel secure, stable, reliable" }
-  - { label: "Speed & flow", description: "Names that feel fast, smooth, effortless" }
-  - { label: "Infrastructure", description: "Names that feel like solid, serious plumbing" }
-  - { label: "No preference", description: "Surprise me — let the brief guide the direction" }
 
 **Q3:**
 - question: "Domain preference? (guideline, not a gate)"
@@ -873,6 +856,18 @@ After presenting the final recommendation to the user, save the deliverables to 
    ---
 
    # Brand Naming
+
+   ## Discovery Inputs
+   - **Target**: [Company / Product / Agent / Feature]
+   - **Audience**: [from Round 1 Q2 or onboarding]
+   - **Description**: [user's typed description]
+   - **Diamond Win**: [from Round 2]
+   - **Diamond Have**: [from Round 2]
+   - **Diamond Need**: [from Round 2]
+   - **Diamond Say**: [from Round 2]
+   - **Style direction**: [from Round 3 Q1]
+   - **Avoid themes**: [from Round 3 Q2]
+   - **Domain preference**: [from Round 3 Q3]
 
    ## Scoring Matrix
    [11-dimension × N-name matrix table, totals /55]
