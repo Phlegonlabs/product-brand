@@ -152,7 +152,7 @@ Call `AskUserQuestion` with 3 questions:
 - multiSelect: true
 - options:
   - { label: "AI/GPT trend words", description: "No 'AI', 'GPT', 'neural', 'smart' — dates badly" }
-  - { label: "Too-literal words", description: "Avoid function-first names like Pay, Wallet, Send, Auth" }
+  - { label: "Too-literal words", description: "Avoid function-first names (Pay, Wallet, Send, Agent, Task) — abstract real words like Stripe, Linear, Notion are great" }
   - { label: "Crypto/web3 vibes", description: "No chain, block, token, mint — even if unintentional" }
   - { label: "No restrictions", description: "Open to any direction — let the brief lead" }
 
@@ -178,6 +178,8 @@ Then ask as a follow-up prose question if needed: language requirements, length 
 
 **Target: 60–100 candidates total.** Generate in three cognitive batches to maximize diversity.
 
+> **Critical — Real Words vs. Invented Words:** At least half the candidates MUST be real English words (or recognizable word combinations) used in an abstract, unrelated context. "Too-literal" means function-descriptors (e.g., "TaskRunner", "AgentHub") — NOT real words from other semantic territories. Names like Stripe (texture), Linear (geometry), Notion (concept), Relay (process), Prism (optics), Canvas (art), Loom (weaving), Slope (terrain) are abstract real words — they carry instant familiarity without describing what the product does. This is Lexicon's "surprisingly familiar" sweet spot. **Do NOT generate 60–100 morpheme-engineered invented words — that produces a homogeneous, forgettable candidate set regardless of scores.**
+
 > **Key principle from Lexicon:** Separate generation from evaluation entirely. No judgment during generation. Generate first, judge later. Teams that evaluate while generating produce smaller, safer, more forgettable candidate sets.
 
 > **Multiple Exploration Cycles:** Lexicon repeats the generation process across different semantic territories over multiple periods. Single-session brainstorming produces "marginal results due to groupthink." If the first 60–100 candidates don't yield strong shortlist material, do not simply generate more of the same — shift to a completely different thematic territory (e.g., from "speed/precision" to "craft/artisanship" to "nature/organic") and run the three perspectives again. Each cycle should feel like a fresh start with different source concepts, not a continuation of the first. Two to three territory cycles typically surface breakthrough candidates that a single pass misses.
@@ -193,7 +195,7 @@ You know exactly what the product does, who it's for, and what winning looks lik
 
 - Pull from the Diamond Framework answers
 - Apply the user's stated style preferences
-- Use all 8 name types (prioritize Invented, Abstract, Compound)
+- Use all 8 name types — prioritize **Abstract/Arbitrary** (real words in new context: Stripe, Linear, Relay, Loom) and **Compound** (BlackBerry, Windsurf) alongside Invented morpheme words
 - Apply letter psychology for brand fit
 
 #### Perspective B — The Competitor (20–30 names)
