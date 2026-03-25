@@ -887,6 +887,16 @@ After presenting the final recommendation to the user, save the deliverables to 
 
 ## Workflow: Next Step
 
-After completing this skill, prompt the user:
+After saving the output file, call `AskUserQuestion`:
 
-> **10 个可注册候选名已就绪！** 你不需要现在做决定——好名字需要时间发酵。下一步是 **品牌定位**——我们可以用任意一个候选名作为工作名称开始定位，定位完成后再做最终命名决策。要现在开始 `brand-positioning` 吗？
+**Q1:**
+- question: "10 name candidates are saved! What do you want to work on next?"
+- header: "Next step"
+- multiSelect: false
+- options:
+  - { label: "② Positioning", description: "Define market position, value prop, and competitive map" }
+  - { label: "③ Voice & Messaging", description: "Taglines, tone guidelines, and messaging hierarchy" }
+  - { label: "④ Visual Identity", description: "Color palette, typography, and logo direction brief" }
+  - { label: "Done for now", description: "I'll come back later — all progress is saved in the project folder" }
+
+Route to the selected module by reading the appropriate reference file. If "Done for now", confirm: "Your 10 name candidates are saved in `{project-name}/01-naming.md`. Come back anytime to continue."

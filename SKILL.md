@@ -268,9 +268,7 @@ After completing each module:
    - Include YAML frontmatter with `project`, `module`, and `date` fields
    - Confirm to the user: "✅ Saved to `{project-name}/0X-module-name.md`"
 
-2. **Briefly note what's available next** — but do NOT prompt to continue:
-   - Example: "When you're ready, the next step is ② Positioning."
-   - The user decides when to run the next module. They may come back in a different session.
+2. **Let the user choose what's next** using `AskUserQuestion`. Show only the remaining uncompleted steps (check the project folder for existing output files) plus "Done for now". Route to the selected module by reading the appropriate reference file. If "Done for now", end gracefully.
 
 ---
 
